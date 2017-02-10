@@ -964,9 +964,9 @@ pre .xml .attribute {
   margin: 0 10px;
   background-color: #9e457a;
 }
-.trace-invest span a {
+.trace-invest span {
   color: #fff;
 }
-.trace-invest span a:hover {
+.trace-invest span:hover {
   text-decoration: none;
 }
