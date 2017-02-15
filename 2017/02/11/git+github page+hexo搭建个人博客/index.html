@@ -105,7 +105,7 @@ node-v6.95-x64.msi
 Git-2.11.1-64-bit.exe
 
 2和3直接百度下载,下">
-<meta property="og:updated_time" content="2017-02-15T08:37:20.334Z">
+<meta property="og:updated_time" content="2017-02-15T08:39:37.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git+github page+hexo搭建个人博客">
 <meta name="twitter:description" content="1.前言  一直想自己搭建一个博客记录学习中遇到的问题,以便以后查阅.在百度了之后,决定采取这最简单而且免费的方式.经过了几个小时的摸索,终于可以在浏览器上访问到自己的博客,还是有点成就感的,所以自己的第一篇博客就决定来记录一下博客的搭建过程.
@@ -455,15 +455,21 @@ Git-2.11.1-64-bit.exe
 <li><p>在浏览器输入 你的github名.github.io,应该就可以看到你的博客页面了</p>
 </li>
 </ol>
-<h3 id="6-编写发布博客"><a href="#6-编写发布博客" class="headerlink" title="6.编写发布博客"></a>6.编写发布博客</h3><p>1.首先介绍一下博客目录下一些重要的目录</p>
-<pre><code>public:和远程仓库的内容同步
-source:这个文件夹下的_post的文件可以用来生成静态资源并发布到
-       远程仓库上
-themes:博客的主题文件存放目录
-</code></pre><p>2.进入source目录下的_post文件夹,这个文件夹下放的一般是markdown文件,所以得先下载markdown编辑器.百度一下即可下载,安装也是一路下一步就行,没什么注意的地方.</p>
-<p>3.编辑器下载完成,即可在这个文件夹下创建一个markdown文件,markdown文件编写语法也比较简单,可以百度个博客稍微学习一下,在文件中编写自己的博客内容</p>
-<p>4.进入命令行中执行 hexo g 命令生成静态资源,在执行hexo d命令进行发布</p>
-<p>5.在浏览器中键入 你的github名.github.io 即可以看到你刚发布的博客啦</p>
+<h3 id="6-编写发布博客"><a href="#6-编写发布博客" class="headerlink" title="6.编写发布博客"></a>6.编写发布博客</h3><ol>
+<li><p>首先介绍一下博客目录下一些重要的目录</p>
+<p> public:和远程仓库的内容同步<br> source:这个文件夹下的_post的文件可以用来生成静态资源并发布到</p>
+<pre><code>远程仓库上
+</code></pre><p> themes:博客的主题文件存放目录</p>
+</li>
+<li><p>进入source目录下的_post文件夹,这个文件夹下放的一般是markdown文件,所以得先下载markdown编辑器.百度一下即可下载,安装也是一路下一步就行,没什么注意的地方.</p>
+</li>
+<li><p>编辑器下载完成,即可在这个文件夹下创建一个markdown文件,markdown文件编写语法也比较简单,可以百度个博客稍微学习一下,在文件中编写自己的博客内容</p>
+</li>
+<li><p>进入命令行中执行 hexo g 命令生成静态资源,在执行hexo d命令进行发布</p>
+</li>
+<li><p>在浏览器中键入 你的github名.github.io 即可以看到你刚发布的博客啦</p>
+</li>
+</ol>
 <h3 id="7-使用自己的域名绑定github-page"><a href="#7-使用自己的域名绑定github-page" class="headerlink" title="7.使用自己的域名绑定github page"></a>7.使用自己的域名绑定github page</h3><p>如果你觉得github名.github.io这个地址不好记,想用自己申请的域名访问自己的博客,就可以按照下面的步骤,将自己的域名绑定到github page上啦</p>
 <ol>
 <li><p>首先申请个域名,我是在阿里云上申请的,<a href="www.aliyun.com">点击进入阿里云</a></p>
@@ -480,9 +486,11 @@ themes:博客的主题文件存放目录
 </code></pre></li>
 </ol>
 <ol>
-<li>回到你的github主页,进入你的github page仓库,进入Setting页面,在Customer domain栏里填入你的域名,点击save保存</li>
+<li><p>回到你的github主页,进入你的github page仓库,进入Setting页面,在Customer domain栏里填入你的域名,点击save保存</p>
+</li>
+<li><p>静待片刻,在浏览器输入你的域名,即可看到你的博客页面了</p>
+</li>
 </ol>
-<p>6.静待片刻,在浏览器输入你的域名,即可看到你的博客页面了</p>
 
       
     </div>
