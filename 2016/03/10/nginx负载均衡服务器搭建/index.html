@@ -114,7 +114,7 @@ yum install -y openssl openssl-devel
 
 使用configure命令创建一makeFile文">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/n图片1.png">
-<meta property="og:updated_time" content="2017-03-19T14:46:24.902Z">
+<meta property="og:updated_time" content="2017-03-19T17:08:43.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx负载均衡服务器搭建">
 <meta name="twitter:description" content="nginx安装
@@ -497,14 +497,13 @@ worker_processes  1;
 #error_log  logs/error.log  info;
 
 #pid        logs/nginx.pid;
-</code></pre></li>
-</ol>
-<pre><code>events {
+
+events {
     worker_connections  1024;
 }
-
-
-http {
+</code></pre></li>
+</ol>
+<pre><code>http {
     include       mime.types;
     default_type  application/octet-stream;
 
