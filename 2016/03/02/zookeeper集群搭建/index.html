@@ -104,7 +104,7 @@
 [root@localhost ~]# mkdir /usr/local/solr-cloud
 [root@localhost ~]# cp -r zookeeper-3.4.6 /usr/local/solr-clo">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/zoo图片1.png">
-<meta property="og:updated_time" content="2017-03-19T15:43:30.604Z">
+<meta property="og:updated_time" content="2017-03-19T17:10:12.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zookeeper集群版搭建">
 <meta name="twitter:description" content="Zookeeper集群搭建第一步：需要安装jdk环境。  
@@ -443,8 +443,8 @@
 [root@localhost ~]# cp -r zookeeper-3.4.6 /usr/local/solr-cloud/zookeeper01
 [root@localhost ~]# cp -r zookeeper-3.4.6 /usr/local/solr-cloud/zookeeper02
 [root@localhost ~]# cp -r zookeeper-3.4.6 /usr/local/solr-cloud/zookeeper03
-第五步：在每个zookeeper目录下创建一个data目录。
-</code></pre><p>第六步：在data目录下创建一个myid文件，文件名就叫做“myid”。内容就是每个实例的id。例如1、2、3  </p>
+</code></pre><p>第五步：在每个zookeeper目录下创建一个data目录。  </p>
+<p>第六步：在data目录下创建一个myid文件，文件名就叫做“myid”。内容就是每个实例的id。例如1、2、3  </p>
 <pre><code>[root@localhost data]# echo 1 &gt;&gt; myid
 [root@localhost data]# ll
 total 4
@@ -509,8 +509,8 @@ server.3=192.168.25.154:2883:3883
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/03/solr集群版搭建/" rel="prev" title="solr集群版搭建">
-                solr集群版搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/03/solr单机版搭建/" rel="prev" title="solr单机版搭建">
+                solr单机版搭建 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
