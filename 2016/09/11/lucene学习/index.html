@@ -1,0 +1,1235 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,lucene," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是luceneLucene是简单而功能强大的基于Java的搜索库。它可以用于任何应用程序来搜索功能。 Lucene是开源项目。它是可扩展的，高性能的库用于索引和搜索几乎任何类型的文本。 Lucene库提供了所需的任何搜索应用程序的核心业务。索引和搜索。
+lucene的工作原理
+获取原始内容 任何搜索应用程序的第一个步骤是收集在其上的搜索是要进行的目标内容。
+
+构建文档 下一步是建立从原始内容的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lucene学习">
+<meta property="og:url" content="http://shayujie.win/2016/09/11/lucene学习/index.html">
+<meta property="og:site_name" content="windwest">
+<meta property="og:description" content="什么是luceneLucene是简单而功能强大的基于Java的搜索库。它可以用于任何应用程序来搜索功能。 Lucene是开源项目。它是可扩展的，高性能的库用于索引和搜索几乎任何类型的文本。 Lucene库提供了所需的任何搜索应用程序的核心业务。索引和搜索。
+lucene的工作原理
+获取原始内容 任何搜索应用程序的第一个步骤是收集在其上的搜索是要进行的目标内容。
+
+构建文档 下一步是建立从原始内容的">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/lucene1.png">
+<meta property="og:updated_time" content="2017-03-20T16:51:36.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="lucene学习">
+<meta name="twitter:description" content="什么是luceneLucene是简单而功能强大的基于Java的搜索库。它可以用于任何应用程序来搜索功能。 Lucene是开源项目。它是可扩展的，高性能的库用于索引和搜索几乎任何类型的文本。 Lucene库提供了所需的任何搜索应用程序的核心业务。索引和搜索。
+lucene的工作原理
+获取原始内容 任何搜索应用程序的第一个步骤是收集在其上的搜索是要进行的目标内容。
+
+构建文档 下一步是建立从原始内容的">
+<meta name="twitter:image" content="http://oles6cv6e.bkt.clouddn.com/lucene1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shayujie.win/2016/09/11/lucene学习/"/>
+
+
+
+
+
+  <title> lucene学习 | windwest </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43c1d4343254ae7e56121486f5c38b77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">windwest</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shayujie.win/2016/09/11/lucene学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangjian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="windwest">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="windwest" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                lucene学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-11T14:19:28+08:00">
+                2016-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/lucene/" itemprop="url" rel="index">
+                    <span itemprop="name">lucene</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/11/lucene学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/11/lucene学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/09/11/lucene学习/" class="leancloud_visitors" data-flag-title="lucene学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是lucene"><a href="#什么是lucene" class="headerlink" title="什么是lucene"></a>什么是lucene</h3><p>Lucene是简单而功能强大的基于Java的搜索库。它可以用于任何应用程序来搜索功能。 Lucene是开源项目。它是可扩展的，高性能的库用于索引和搜索几乎任何类型的文本。 Lucene库提供了所需的任何搜索应用程序的核心业务。索引和搜索。</p>
+<h3 id="lucene的工作原理"><a href="#lucene的工作原理" class="headerlink" title="lucene的工作原理"></a>lucene的工作原理</h3><ol>
+<li><p>获取原始内容<br> 任何搜索应用程序的第一个步骤是收集在其上的搜索是要进行的目标内容。</p>
+</li>
+<li><p>构建文档<br> 下一步是建立从原始内容的搜索应用程序可以理解和容易理解的文件。</p>
+</li>
+<li><p>分析文档<br> 在索引过程启动，该文件是要分析作为其文本部分是一个候选索引。这个过程被称为分析文档。 </p>
+</li>
+<li><p>索引文件<br> 一旦文档被构建和分析，下一步是将索引它们使得该文件可被检索</p>
+</li>
+</ol>
+<h3 id="lucene的主要jar包"><a href="#lucene的主要jar包" class="headerlink" title="lucene的主要jar包"></a>lucene的主要jar包</h3><p><img src="http://oles6cv6e.bkt.clouddn.com/lucene1.png" alt="图片"></p>
+<h3 id="基本的lucene操作"><a href="#基本的lucene操作" class="headerlink" title="基本的lucene操作"></a>基本的lucene操作</h3><pre><code>public class TestLucene {
+    /**
+     * 生成索引库
+     *
+     * @throws IOException
+     */
+    @Test
+    public void testLuceneGenerateIndex() throws IOException {
+        //指定索引存放的路径
+        Directory directory = FSDirectory.open(new File(&quot;D:\\index&quot;));
+        //创建一个标准分析器
+        Analyzer analyzer = new StandardAnalyzer();
+        //创建indexwriterconfig对象
+        //第一个参数,lucene版本信息,可以使用latest代表最新版本,也可以直接指定
+        //第二个参数,分析器对象
+        IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, analyzer);
+        //创建indexwriter对象
+        IndexWriter writer = new IndexWriter(directory, config);
+        //原始文档的路径
+        File dir = new File(&quot;D:\\sql语句&quot;);
+        for (File file : dir.listFiles()) {
+            //文件名
+            String name = file.getName();
+            //文件大小
+            long size = FileUtils.sizeOf(file);
+            //文件路径
+            String path = file.getPath();
+            //文件内容
+            String content = FileUtils.readFileToString(file);
+            //创建文件名域
+            //第一个参数 域的名称
+            //第二个参数 域的内容
+            //第三个参数 是否存储
+            Field nameField = new TextField(&quot;filename&quot;, name, Field.Store.YES);
+            //创建文件大小域
+            Field sizeField = new LongField(&quot;filesize&quot;, size, Field.Store.YES);
+            //创建文件路径域(不分析 不索引 只存储)
+            Field pathField = new StoredField(&quot;pathField&quot;, path);
+            //创建文件内容域
+            Field contentField = new TextField(&quot;filecontent&quot;, content, Field.Store.YES);
+            //创建Document对象
+            Document document = new Document();
+            document.add(nameField);
+            document.add(sizeField);
+            document.add(pathField);
+            document.add(contentField);
+            //创建索引,并写入索引库
+            writer.addDocument(document);
+        }
+        writer.close();
+    }
+
+    /**
+     * 查询索引库
+     */
+    @Test
+    public void testLuceneQueryIndex() throws IOException {
+        //指定索引库存放的路径
+        Directory directory = FSDirectory.open(new File(&quot;D:\\index&quot;));
+        //创建indexReader对象
+        IndexReader reader = DirectoryReader.open(directory);
+        //创建indexSearch对象
+        IndexSearcher searcher = new IndexSearcher(reader);
+        //创建查询
+        //Term对象第一个参数是field的name值,第二个参数是具体查询的词
+        Query query = new TermQuery(new Term(&quot;filecontent&quot;, &quot;select&quot;));
+        //执行查询
+        //第一个参数是查询对象,第二个参数是查询结果返回的个数
+        TopDocs topDocs = searcher.search(query, 10);
+        //遍历查询结果
+        for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
+            //scoredoc对象的doc属性就是document对象的id
+            //根据对象id获取对象
+            Document document = searcher.doc(scoreDoc.doc);
+            System.out.println(document.get(&quot;filename&quot;));
+            System.out.println(document.get(&quot;filesize&quot;));
+            System.out.println(document.get(&quot;pathField&quot;));
+        }
+        reader.close();
+    }
+
+    //标准分析器的分词效果
+    @Test
+    public void testStandardAnalyzer() throws IOException {
+        //创建一个标准分析器对象
+        Analyzer analyzer = new StandardAnalyzer();
+        //获得tokenStream对象
+        //第一个参数,域名,可以随便给一个
+        //第二个参数,要分析的文本内容
+        TokenStream tokenStream = analyzer.tokenStream(&quot;test&quot;, &quot;The Spring Framework provides a comprehensive programming and configuration model.&quot;);
+        //添加一个引用,可以获得每个关键词
+        CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+        //添加一个偏移量的引用,记录关键词的起始位置
+        OffsetAttribute offsetAttribute = tokenStream.addAttribute(OffsetAttribute.class);
+        //将指针调整到列表的头部
+        tokenStream.reset();
+        //遍历关键词裂变,通过incrementToken方法判断列表是否结束
+        while (tokenStream.incrementToken()) {
+            //关键词的起始位置
+            System.out.println(offsetAttribute.startOffset());
+            //关键词
+            System.out.println(charTermAttribute);
+            //关键词的结束位置
+            System.out.println(offsetAttribute.endOffset());
+        }
+        tokenStream.close();
+    }
+
+    //IKAnalyzer的分词效果
+    @Test
+    public void testIKAnalyzer() throws IOException {
+        //创建一个标准分析器对象
+        Analyzer analyzer = new IKAnalyzer();
+        //获得tokenStream对象
+        //第一个参数,域名,可以随便给一个
+        //第二个参数,要分析的文本内容
+        TokenStream tokenStream = analyzer.tokenStream(&quot;test&quot;, &quot;&lt;&lt;我的狐仙老婆&gt;&gt;是一部17K小说网连载的仙侠网络小说,作者是黑夜de白羊.主要讲述了高富帅刘弈,因为被仙女封印了一只调皮狡猾的俏狐仙在他的右手中,从此走上了不平凡的修仙之路的故事.&quot;);
+        //添加一个引用,可以获得每个关键词
+        CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+        //添加一个偏移量的引用,记录关键词的起始位置
+        OffsetAttribute offsetAttribute = tokenStream.addAttribute(OffsetAttribute.class);
+        //将指针调整到列表的头部
+        tokenStream.reset();
+        //遍历关键词裂变,通过incrementToken方法判断列表是否结束
+        while (tokenStream.incrementToken()) {
+            //关键词的起始位置
+            System.out.println(offsetAttribute.startOffset());
+            //关键词
+            System.out.println(charTermAttribute);
+            //关键词的结束位置
+            System.out.println(offsetAttribute.endOffset());
+        }
+        tokenStream.close();
+    }
+
+    //索引库的添加
+    @Test
+    public void testAddLuceneIndex() throws IOException {
+        //索引库存放路径
+        IndexWriter writer = getIndexWriter();
+        Document document = new Document();
+
+        document.add(new TextField(&quot;filename&quot;, &quot;新添加的文档名&quot;, Field.Store.YES));
+        document.add(new TextField(&quot;content&quot;, &quot;新添加的文档内容&quot;, Field.Store.NO));
+        document.add(new TextField(&quot;content&quot;, &quot;新添加的文档内容第二个content&quot;, Field.Store.YES));
+        document.add(new TextField(&quot;content1&quot;, &quot;新添加的文档内容能看到的&quot;, Field.Store.YES));
+
+        //添加文档到索引库
+        writer.addDocument(document);
+
+        //关闭IndexWriter
+        writer.close();
+    }
+
+
+    //删除索引库中的全部索引(慎用)
+    @Test
+    public void testDeleteLuceneIndexRepository() throws IOException {
+        IndexWriter writer = getIndexWriter();
+        writer.deleteAll();
+        writer.close();
+    }
+
+    private static IndexWriter getIndexWriter() throws IOException {
+        Directory directory = FSDirectory.open(new File(&quot;D:\\index&quot;));
+        IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, new IKAnalyzer());
+        return new IndexWriter(directory, config);
+    }
+
+    //指定查询条件删除索引
+    @Test
+    public void testConditionDeleteLuceneIndex() throws IOException {
+        IndexWriter indexWriter = getIndexWriter();
+        //创建一个查询条件
+        Query query = new TermQuery(new Term(&quot;filename&quot;, &quot;apache&quot;));
+        //根据查询条件删除
+        indexWriter.deleteDocuments(query);
+        //关流
+        indexWriter.close();
+    }
+
+    //索引库的修改,原理就是先删除后修改
+    @Test
+    public void testUpdateLuceneIndexRepository() throws IOException {
+        IndexWriter indexWriter = getIndexWriter();
+        //创建一个document对象
+        Document document = new Document();
+        document.add(new TextField(&quot;filename&quot;, &quot;要更新的文件名&quot;, Field.Store.YES));
+        document.add(new TextField(&quot;filecontent&quot;, &quot;要更新的文档内容,...(省略一万字)&quot;, Field.Store.YES));
+        indexWriter.updateDocument(new Term(&quot;content&quot;, &quot;java&quot;), document);
+        indexWriter.close();
+    }
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/lucene/" rel="tag"># lucene</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/20/商品秒杀功能的分析与基本实现思路/" rel="next" title="商品秒杀功能的分析与基本实现思路">
+                <i class="fa fa-chevron-left"></i> 商品秒杀功能的分析与基本实现思路
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/22/python学习/" rel="prev" title="python学习">
+                python学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/11/lucene学习/"
+     data-title="lucene学习"
+     data-content=""
+     data-url="http://shayujie.win/2016/09/11/lucene学习/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/11/lucene学习/"
+           data-title="lucene学习" data-url="http://shayujie.win/2016/09/11/lucene学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wangjian" />
+          <p class="site-author-name" itemprop="name">wangjian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是lucene"><span class="nav-number">1.</span> <span class="nav-text">什么是lucene</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lucene的工作原理"><span class="nav-number">2.</span> <span class="nav-text">lucene的工作原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lucene的主要jar包"><span class="nav-number">3.</span> <span class="nav-text">lucene的主要jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的lucene操作"><span class="nav-number">4.</span> <span class="nav-text">基本的lucene操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangjian</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"windwest"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DUQBQb6oCssm8GXEbBxE3MdC-gzGzoHsz", "g3B552waeaEE4e2aIwLa449e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

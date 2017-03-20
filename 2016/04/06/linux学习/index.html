@@ -1,0 +1,1137 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="linux目录/： 根目录， 一般根目录下只存放目录， 在Linux下有且只有一个根目录。 所有的东西
+都是从这里开始。 当你在终端里输入“/home”， 你其实是在告诉电脑， 先从/（ 根目
+录） 开始， 再进入到home目录。
+/bin、 /usr/bin: 可执行二进制文件的目录， 如常用的命令ls、 tar、 mv、 cat等。
+/boot： 放置linux系统启动时用到的一些文件， 如L">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux学习">
+<meta property="og:url" content="http://shayujie.win/2016/04/06/linux学习/index.html">
+<meta property="og:site_name" content="windwest">
+<meta property="og:description" content="linux目录/： 根目录， 一般根目录下只存放目录， 在Linux下有且只有一个根目录。 所有的东西
+都是从这里开始。 当你在终端里输入“/home”， 你其实是在告诉电脑， 先从/（ 根目
+录） 开始， 再进入到home目录。
+/bin、 /usr/bin: 可执行二进制文件的目录， 如常用的命令ls、 tar、 mv、 cat等。
+/boot： 放置linux系统启动时用到的一些文件， 如L">
+<meta property="og:updated_time" content="2017-03-20T16:54:24.458Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux学习">
+<meta name="twitter:description" content="linux目录/： 根目录， 一般根目录下只存放目录， 在Linux下有且只有一个根目录。 所有的东西
+都是从这里开始。 当你在终端里输入“/home”， 你其实是在告诉电脑， 先从/（ 根目
+录） 开始， 再进入到home目录。
+/bin、 /usr/bin: 可执行二进制文件的目录， 如常用的命令ls、 tar、 mv、 cat等。
+/boot： 放置linux系统启动时用到的一些文件， 如L">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shayujie.win/2016/04/06/linux学习/"/>
+
+
+
+
+
+  <title> linux学习 | windwest </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43c1d4343254ae7e56121486f5c38b77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">windwest</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shayujie.win/2016/04/06/linux学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangjian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="windwest">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="windwest" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-04-06T14:19:28+08:00">
+                2016-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/04/06/linux学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/06/linux学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/04/06/linux学习/" class="leancloud_visitors" data-flag-title="linux学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="linux目录"><a href="#linux目录" class="headerlink" title="linux目录"></a>linux目录</h2><pre><code>/： 根目录， 一般根目录下只存放目录， 在Linux下有且只有一个根目录。 所有的东西
+都是从这里开始。 当你在终端里输入“/home”， 你其实是在告诉电脑， 先从/（ 根目
+录） 开始， 再进入到home目录。
+/bin、 /usr/bin: 可执行二进制文件的目录， 如常用的命令ls、 tar、 mv、 cat等。
+/boot： 放置linux系统启动时用到的一些文件， 如Linux的内核文件： /boot/vmlinuz,系统引导管理器： /boot/grub。
+/dev： 存放linux系统下的设备文件， 访问该目录下某个文件， 相当于访问某个设备，
+常见的是挂载光驱 mount /dev/cdrom /mnt。
+/etc： 系统配置文件存放的目录， 不建议在此目录下存放可执行文件， 重要的配置文
+件有 /etc/inittab、 /etc/fstab、 /etc/init.d、 /etc/X11、 /etc/sysconfig、 /etc/xinetd.d。
+/home： 系统默认的用户家目录， 新增用户账号时， 用户的家目录都存放在此目录
+下， ~表示当前用户的家目录， ~edu 表示用户 edu 的家目录。
+/lib、 /usr/lib、 /usr/local/lib： 系统使用的函数库的目录， 程序在执行过程中， 需要调
+用一些额外的参数时需要函数库的协助。
+/lost+fount： 系统异常产生错误时， 会将一些遗失的片段放置于此目录下。
+/mnt: /media： 光盘默认挂载点， 通常光盘挂载于 /mnt/cdrom 下， 也不一定， 可以选
+择任意位置进⾏挂载。
+/opt： 给主机额外安装软件所摆放的目录。
+/proc： 此目录的数据都在内存中， 如系统核心， 外部设备， 网络状态， 由于数据都存
+放于内存中， 所以不占用磁盘空间， 比较重要的目录有
+/proc/cpuinfo、 /proc/interrupts、 /proc/dma、 /proc/ioports、 /proc/net/* 等。
+/root： 系统管理员root的家目录。
+/sbin、 /usr/sbin、 /usr/local/sbin： 放置系统管理员使用的可执行命令， 如fdisk、
+shutdown、 mount 等。 与 /bin 不同的是， 这几个目录是给系统管理员 root使用的命
+令， 一般用户只能&quot;查看&quot;而不能设置和使用。
+/tmp： 一般用户或正在执行的程序临时存放文件的目录， 任何人都可以访问， 重要数
+据不可放置在此目录下。
+/srv： 服务启动之后需要访问的数据目录， 如 www 服务需要访问的网页数据存放在
+/srv/www 内。
+/usr： 应用程序存放目录， /usr/bin 存放应用程序， /usr/share 存放共享数据， /usr/lib
+存放不能直接运行的， 却是许多程序运行所必需的一些函数库文件。 /usr/local: 存放
+软件升级包。 /usr/share/doc: 系统说明文件存放目录。 /usr/share/man: 程序说明文件
+存放目录。
+/var： 放置系统执行过程中经常变化的文件， 如随时更改的日志文件
+/var/log， /var/log/message： 所有的登录文件存放目录， /var/spool/mail： 邮件存放
+的目录， /var/run:程序或服务启动后， 其PID存放在该目录下。
+</code></pre><h2 id="liunx常用指令"><a href="#liunx常用指令" class="headerlink" title="liunx常用指令"></a>liunx常用指令</h2><h3 id="man命令"><a href="#man命令" class="headerlink" title="man命令"></a>man命令</h3><p>使用man命令查询帮助文档时,可以使用以下快捷键<br>f 向前翻一页<br>b 向后翻一页(和空格键一样的效果)<br>Enter键 向下滚动一行<br>/word 在文档中搜索word字符串  </p>
+<h3 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h3><p>ls 查看文件命令,类似于dos的dir命令<br>. 代表当前目录  ..代表上一级目录<br>-a 显示指定目录下所有子目录与文件,包括隐藏目录<br>-l 以列表方式显示文件的详细信息<br>-h 配合-l以人性化的方式显示文件大小(直接使用-h没啥效果)  </p>
+<h3 id="文件属性含义"><a href="#文件属性含义" class="headerlink" title="文件属性含义"></a>文件属性含义</h3><pre><code>   1      2  3    4     5       6         7  
+-rw-r--r-- 1 root root  14 11月 24 01:31 file3
+</code></pre><p>1: 第一个字符代表文件的类型,后面9位是文件的权限,前三位是文件创建用户的权限,中间三位是文件创建用户所属组的权限,后面三位是其他用户的权限.<br>2: 文件的硬链接数<br>3: 文件的创建用户,拥有者<br>4: 文件创建用户所属的组<br>5: 文件的大小<br>6: 文件的创建时间<br>7: 文件名  </p>
+<h3 id="linux命令中通配符的使用"><a href="#linux命令中通配符的使用" class="headerlink" title="linux命令中通配符的使用"></a>linux命令中通配符的使用</h3><p>可以使用* 来匹配多个文件  </p>
+<ul>
+<li>代表文件名中的所有字符<br>ls te<em>  查找文件名以te开头的文件<br>ls </em> html 查找文件名以html结尾的文件<br>? 代表文件名中任意一个字符<br>ls ?.c 查找文件名第一个字符任意,后缀为.c的文件<br>ls a.? 查找文件名最后一个字符任意,前面是a.的文件<br>[] [和]将字符组括起来,表示可以匹配字符组中的任意一个,-用于表示字符范围<br>[abc]  匹配abc中的任意一个<br>[a-f] 匹配从a到f范围内的任意一个字符<br>ls [a-f]<em> 查找文件名以a到f中任意一个字符开头的文件<br>ls a-f 查找文件名为a-f的文件,当-处于方括号之外,失去通配符的作用<br>\ 如果要使通配符作为普通字符使用,可以在其前面加上转义字符.?和</em>处于方括号内时不用使用转义字符就失去通配符的作用  </li>
+</ul>
+<h3 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h3><p>.&gt;输出重定向命令<br>可以将本应该显示到终端的内容输出到文件中<br>ls &gt; test.txt(如果该文件不存在就会自动创建)<br>打开该文件就可以看到本应该显示在终端上的内容  </p>
+<h3 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h3><p>cat 可以查看文件内容<br>当内容过多时,会出现文件内容在屏幕上快速滚动<br>这时可以使用more 命令进行分屏显示<br>more命令展示的内容 可以使用man命令下的那些快捷键协助查看  </p>
+<h3 id="管道符"><a href="#管道符" class="headerlink" title="|管道符"></a>|管道符</h3><p>| 管道符<br>一个命令的输出可以当作另一个命令的输入<br>如果目录下子文件和目录比较多的话,就可以用下面这个命令,将ls -lh的命令结果在页面上分屏显示<br>ls -lh | more  </p>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><p>clear命令<br>清空屏幕,和dos的cls命令效果一样.假清屏,之前的内容还在上方,还可以使用ctrl+l快捷键.  </p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><p>cd命令<br>切换工作目录<br>cd后面可以跟绝对路径,也可以跟相对路径<br>cd 如果后面不跟任何目录,则会切换到当前用户的主目录(就是家目录,/home/用户目录),用户刚登录的时候,默认就在用户目录下<br>cd ~ 切换到当前用户的主目录<br>cd . 切换到当前目录<br>cd .. 切换到上级目录<br>cd - 可进入上次所在的目录,和windows的后退一样  </p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>pwd 显示当前所在目录</p>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>mkdir 创建目录<br>后面接要创建的目录名 mkdir test<br>接-p参数可以递归创建目录 mkdir a/b/c -p<br>值得注意的是,新建的目录不能和当前已经存在的目录或者文件重名,并且目录创建者在当前目录拥有写的权限  </p>
+<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a>tree</h3><p>tree命令 ,可以用树状图的形式显示指定目录下的目录结构  </p>
+<h3 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h3><p>rmdir 删除目录<br>需要注意:删除目录之前,目录得是空目录,目录下没有任何文件和目录,并且不能处于该目录下,要离开该目录,而且删除该目录的用户对该目录需要拥有写的权限  </p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>rm 删除文件或者目录<br>参数:<br>-i  以进行交互的方式执行,删除前会询问是否删除<br>-f  强制删除,忽略不存在的文件,不会询问<br>-r  递归的删除目录下的文件,删除文件夹的时候必须加上此参数  </p>
+<h3 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h3><p>ln 建立链接文件<br>链接文件类似与windos的快捷方式<br>分为硬链接和软链接<br>区别就是删除源文件的时候,软链接会失效,无法使用,而硬链接可以继续使用,没有影响(删除源文件,软硬链接文件还会存在)<br>ln 源文件 链接文件  –&gt; 建立一个硬链接<br>ln -s 源文件 链接文件 –&gt; 建立一个软链接<br>注意:如果软链接文件和源文件不在同一个目录下,源文件要使用绝对路径,不能使用相对路径  </p>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>cat命令除了可以显示文件内容外,还可以通过输出重定向将两个文件内容合并到一个文件中<br>cat 文件1 文件2 &gt; 文件3    将文件1和文件2的内容合并到文件3中<br>.&gt;代表将内容输出到文件3中,但是会将文件3中原有的内容覆盖掉,如果想保留文件3的内容,只是将合并内容追加到原有内容后面,则可以使用 &gt;&gt;  两个&gt;代表追加  </p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>grep 文本搜索<br>grep [-选项] ‘搜索内容串’ 文件名<br>-v 显示不包含匹配文本的所有行(相当于求反)<br>-n 显示匹配行及行号<br>-i 忽略大小写<br>grep搜索内容串可以是正则表达式<br>grep常用正则表达式<br>^a  行首,搜索以a开头的行;grep -n ‘^a’ 1.txt<br>ke$ 行尾,搜索以ke结束的行;grep -n ‘ke$’ 1.txt<br>[Ss]igna[Ll] 匹配[]里中字符组中的其中一个字符<br>.  点匹配任意一个字符,除了换行符,和上面通配符的?效果一样  </p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>find 文件查找<br>用来在特定的目录下搜索符合条件的文件,也可以用来搜索特定用户属主的文件<br>find ./ -name test.sh 查找当前目录下所有名为tesh.sh的文件<br>     后面的文件名可以使用通配符,不过需要用单或双引号引起来<br>find ./ -name ‘<em>.sh’ 查找当前目录下所有名以.sh结尾的文件<br>find ./ -name ‘[A-Z]</em>‘ 查找当前目录下所有名以A到Z中的一个字符开头的文件    </p>
+<p>find 后面还可以加参数 查找满足某些条件的文件<br>find /tmp -size 2M 查找/tmp目录下文件大小为2M的文件<br>find /tmp -size +2M 查找/tmp目录下文件大小大于2M的文件<br>find /tmp -size -2M 查找/tmp目录下文件大小小于2M的文件<br>find ./ -size +4K -size -5M 查找当前目录下文件大小大于4k小于5M的文件<br>find ./ -perm 0777  查找当前目录下权限为777的文件或者目录  </p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><p>cp 拷贝文件<br>将给出的文件或者目录复制到另一个文件或目录中,相当于DOS下的copy命令<br>常用选项参数<br>-a 该选项通常在复制目录时使用,它保留链接,文件属性,并递归地复制目录,简单而言,保持文件原有属性<br>-f 禁止交互式操作,如有覆盖也不会给出提示,相当于强制执行<br>-i 交互式复制,在覆盖目标文件之前将给出提示要求用户确认<br>-r 若给出的源文件是目录文件,则会递归复制该目录下的所有子目录和文件,目标文件必须为一个目录名<br>-v 显示拷贝进度  </p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><p>mv移动文件 相当于windows的剪切<br>mv命令除了可以移动文件或目录,还可以给文件或目录重命名<br>常用选项参数<br>-f 禁止交互式操作,如有覆盖也不会给出提示,相当于强制执行<br>-i 交互式移动,如果移动的目录已经有同名文件,会给出提示要求用户确认是否覆盖<br>-v 显示移动进度  </p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>tar 归档管理,打包和解包<br>计算机中的数据经常需要备份,tar是Unix和Linux中最常用的备份工具,此命令可以把一系列文件归档到一个大文件中,也可以把档案文件解开以恢复数据,<br>tar使用格式<br>tar [参数] 打包文件名 文件1,文件2,文件3<br>tar命令很特殊,其参数前面可以不加-<br>常用选项参数<br>-c 生成档案文件,创建打包文件<br>-v 列出归档解档的详细过程,显示进度<br>-f 指定档案文件名称,f后面一定是.tar文件,所以必须放选项最后<br>-t 列出档案中包含的文件<br>-x 解开档案的文件<br>注意:除了f需要放在参数的最后,其他参数的顺序任意  </p>
+<h3 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a>gzip</h3><p>gzip 文件压缩解压<br>tar与gzip命令结合使用实现文件打包,压缩.tar只负责打包文件,但不压缩,用gzip压缩tar打包后的文件,其扩展名一般用xxx.tar.gz<br>gzip使用格式如下<br>gzip [选项] 被压缩文件 [压缩后的文件名]  不写压缩后的文件名默认是在压缩的文件名后加上.gz<br>常用选项参数<br>-d 解压<br>-r 压缩所有子目录<br>gzip -r test.tar test.tar.gz 等同于 gzip -r test.tar<br>gzip -d test.tar.gz  </p>
+<p>tar这个命令并没有压缩的功能,它只是一个打包的命令,但是在tar命令中增加一个选项(-z)可以调用gzip实现了一个压缩的功能,执行一个先打包后压缩的过程<br>压缩用法: tar zcvf 压缩包包名 文件1,文件2<br>tar cvzf test.tar.gz ./* 将当前目录下的所有文件打包压缩到test.tar.gz文件中  </p>
+<p>解压用法: tar zxvf 压缩包包名<br>tar zxvf test.tar.gz<br>解压时还可以加上一个参数 -C  将文件解压到指定目录<br>tar zxvf test.tar.gz -C ./test 将文件解压到当前目录下的test文件夹中  </p>
+<h3 id="bzip2"><a href="#bzip2" class="headerlink" title="bzip2"></a>bzip2</h3><p>bzip2 文件压缩解压<br>bzip2是另一种压缩方式,用法和gzip一样,也可以结合tar命令使用,只用在tar命令中加一个选项参数-j,就可以实现用bzip2对文件进行压缩和解压操作<br>压缩用法 tar -jcvf 压缩包包名 文件1,文件2,文件3<br>解压用法 tar -jxvf 压缩包包名<br>bzip2压缩的文件文件名一般为xxx.tar.bz2  </p>
+<h3 id="zip-uzip"><a href="#zip-uzip" class="headerlink" title="zip,uzip"></a>zip,uzip</h3><p>zip,unzip 文件压缩解压<br>通过zip压缩文件的目标文件不需要指定扩展名,默认扩展名为zip<br>压缩文件: zip [r] 目标文件 源文件<br>解压文件 unzip -d 解压后目录文件 压缩文件<br>zip myzip *  将当前目录下的所有文件和目录压缩到myzip中<br>unzip -d /test myzip.zip 将myzip解压到当前目录下的test文件夹下<br>需要注意:当被压缩的文件中有失效的软链接,这个软链接并不会被加到压缩文件里  </p>
+<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><p>which 查看命令位置<br>which ls  查看ls命令所在位置<br>当输入了一个不存在的命令,将什么都不返回  </p>
+<h3 id="whoami"><a href="#whoami" class="headerlink" title="whoami"></a>whoami</h3><p>whoami 查看当前用户<br>用该命令可以查看当前系统当前帐号的用户名,可通过cat /etc/passwd查看系统用户信息  </p>
+<h3 id="who"><a href="#who" class="headerlink" title="who"></a>who</h3><p>who 查看登录用户<br>用于查看当前所有登录系统的用户信息<br>常用选项参数:<br>-m或am I 只显示运行who命令的用户用户名,登录终端和登录时间(默认选项)<br>-q或–count 只显示用户的登录帐号和登录用户的数量<br>-u或–heading 显示列标题  </p>
+<h3 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h3><p>exit 退出登录账户<br>如果是图形界面,退出当前终端<br>如果是使用ssh远程登录,退出登录账户<br>如果是切换后的登陆用户,退出则返回上一个登陆帐号  </p>
+<h3 id="useradd"><a href="#useradd" class="headerlink" title="useradd"></a>useradd</h3><p>useradd 添加用户帐号<br>在unix/linux中添加用户帐号可以使用adduser或useradd,因为adduser命令是指向useradd命令的一个链接,因此,这两个命令的使用格式完全一样<br>使用格式: useradd [参数] 新建用户帐号<br>常用参数选项:<br>-d 指定用户登录系统时的主目录,如果不是该参数,系统自动在/home目录下建立与用户名同名的目录为主目录<br>-m 自动建立目录<br>-g 指定组名称<br>相关说明:<br>linux每个用户都要有一个主目录,主目录就是第一次登录系统,用户的默认当前目录(/home/用户名)<br>每一个用户必须有一个主目录,所以用useradd创建用户的时候,一定给用户指定一个主目录<br>用户的主目录一般要放到根目录的home目录下,用户的主目录和用户名是相同的<br>如果创建用户的时候,不指定组名,那么系统会自动创建一个和用户名一样的组名<br>用法<br>useradd -d /home/abc abc -m 创建abc用户,如果/home/abc目录不存在,就自动创建这个目录,同时用户属于abc组<br>useradd -d /home.a a -g test -m创建一个用户名字叫a,主目录在/home/a,如果主目录不存在,就自动创建主目录,同时用户属于test组<br>cat /etc/passwd 查看当前用户的信息  </p>
+<h3 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h3><p>passwd 设置用户密码<br>早Unix/Linux中,超级用户可以使用passwd命令为普通用户设置或修改用户口令.用户也可以直接使用该命令来修改自己的口令,而无需在命令后面使用用户名  </p>
+<h3 id="userdel"><a href="#userdel" class="headerlink" title="userdel"></a>userdel</h3><p>userdel 删除用户<br>用法:<br>userdel abc  删除abc用户,但不会自动删除用户的主目录<br>userdel -r abc 删除abc用户,同时删除用户的主目录(用户名相同的组也删除了)  </p>
+<h3 id="su"><a href="#su" class="headerlink" title="su"></a>su</h3><p>su 切换用户<br>用法:<br>su abc   切换到abc用户,键入命令后输入abc用户的密码即可以切换到abc用户<br>直接使用su 用户名,切换用户后并不会进去到该用户的主目录,可以在su命令后加个-  su - 用户名  这样切换用户之后直接就在该用户的主目录下<br>注意:在ubuntu下,执行命令前需要加sudo   sudo su root<br>在ubuntu下,一些需要root才能操作的命令,可以直接在命令前加sudo执行,这样就免去了要切换到管理员的麻烦  </p>
+<p>sudo -s 切换到超级管理员的一个简单用法  </p>
+<h3 id="查看有哪些用户组"><a href="#查看有哪些用户组" class="headerlink" title="查看有哪些用户组"></a>查看有哪些用户组</h3><p>方法一:<br>cat /etc/group<br>方法二:<br>groupmod + 三次tab键  </p>
+<h3 id="groupadd-groupdel"><a href="#groupadd-groupdel" class="headerlink" title="groupadd groupdel"></a>groupadd groupdel</h3><p>groupadd 添加组帐号 groupdel 删除组帐号<br>用法:<br>groupadd 组名<br>groupdel 组名<br>执行groupadd和groupdel命令需要超级管理员权限,可以切换到超级管理员sudo -s 或者在命令前加上sudo执行  </p>
+<h3 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h3><p>usermod 修改用户所在组<br>用法:<br>usermod -g 用户组 用户名<br>注意:-g添加的组属于用户的默认组,用户所创建的文件显示的组就是默认组<br>     -G一般与 -a 使用,用于追加组</p>
+<h3 id="groups"><a href="#groups" class="headerlink" title="groups"></a>groups</h3><p>groups 查看用户在哪些组<br>用法:<br>groups 用户名  </p>
+<h3 id="为创建的普通用户添加sudo权限"><a href="#为创建的普通用户添加sudo权限" class="headerlink" title="为创建的普通用户添加sudo权限"></a>为创建的普通用户添加sudo权限</h3><p>新创建的用户,默认不能sudo,需要进行以下两步操作<br>sudo usermod -a -G adm 用户名<br>sudo usermod -a -G sudo 用户名  </p>
+<h3 id="usermod-g-和-G的区别"><a href="#usermod-g-和-G的区别" class="headerlink" title="usermod -g 和 -G的区别"></a>usermod -g 和 -G的区别</h3><p>-g 用来制定这个用户默认的用户组<br>-G 一般配合’-a’来完成向其他组添加  </p>
+<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h3><p>chmod 修改文件权限<br>chmod修改文件权限有两种使用格式:字母法与数字法<br>字母法:<br>chmod u/g/o/a +/-/= rwx 文件<br>u user,代表文件的所有者<br>g group,表示与该文件的所有者属于同一组者,即用户组<br>o other,表示其他人<br>a all,表示这三者都是  </p>
+<ul>
+<li>增加权限  </li>
+</ul>
+<ul>
+<li>撤销权限<br>= 设定权限<br>r read,表示可读取,对于一个目录,如果没有r权限,那么就意味着不能通过ls查看这个目录的内容<br>w write,表示可写入,对于一个目录,如果没有w权限,那么就意味着不能在目录下创建新的文件.<br>x excute,表示可执行,对于一个目录,如果没有x权限,那么就以为这不能通过cd进入这个目录  </li>
+</ul>
+<p>用法:<br>chmod u+x test  给用户添加test目录的执行权限<br>chmod g-r test  给同组的用户撤销test目录的可读权限<br>chmod u+x,g-r,u+r test 给用户,同组其他人分别进行权限操作<br>chmod a+x test  给用户,同组其他人都加上test目录的可执行权限  </p>
+<p>数字法:<br>“rwx”这些权限也可以用数字来代替<br>r 读取权限,数字代号为”4”<br>w 读取权限,数字代号为”2”<br>x 执行权限,数字代号为”1”  </p>
+<ul>
+<li>不具任何权限,数字代号为”0”  </li>
+</ul>
+<p>用法与上面相同,就是rwx换成相应的数字<br>可以直接使用chmod 777 test 为test目录修改权限,直接使用数字,三个数字分别按顺序代表ugo,不需要显示声明  </p>
+<p>如果想递归所有目录加上相同权限,需要加上参数 -R<br>chmod 777 test/ -R  test目录下的所有子文件和目录都是777权限  </p>
+<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h3><p>chown 修改文件所有者<br>用法:<br>chown 用户名 文件名  需要超级管理员权限  </p>
+<h3 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a>chgrp</h3><p>chgrp 修改文件所属组<br>用法:<br>chgrp 用户组 文件名  需要超级管理员权限  </p>
+<h3 id="cal"><a href="#cal" class="headerlink" title="cal"></a>cal</h3><p>cal 查看当前日历<br>cal命令用于查看当月日历,-y显示整年日历  </p>
+<h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>date 显示或者设置时间<br>设置时间用法:<br>date [MMDDhhmm[[CC]YY]][.ss] + format<br>CC为年前两位,YY为年的后两位,MM为月,DD为天,hh为小时,mm为分钟,ss为秒<br>如2016年1月2号3点四分55秒写成<br>date 010203042016.55  </p>
+<p>显示时间格式(date ‘+%y,%m,%d,%H,%M,%S’)<br>显示年月日<br>date ‘+%Y-%m-%d’  </p>
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>ps 查看进程信息<br>进程是一个具有一定独立功能的程序.它是操作系统动态执行的基本单元.<br>ps命令可以查看进程的详细状况<br>常用选项参数:<br>-a 显示终端上的所有进程,包括其他用户的进程<br>-u 显示进程的详细状态<br>-x 显示没有控制终端的进程<br>-w 显示加宽,以便显示更多的信息<br>-r 只显示正在运行的进程<br>一般常用 ps -aux  </p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>top 动态显示进程<br>用来动态显示运行中的进程.top命令能够在运行后,在指定的时间间隔更新显示信息.可以在使用top命令时加上-d来指定显示信息更新的时间间隔.<br>在top命令执行后,可以按以下按键对显示的结果进行排序<br>M 根据内存使用量来排序<br>P 根据CPU占有率来排序<br>T 根据进程运行时间的长短来排序<br>U 可以根据后面输入的用户名来筛选进程<br>K 可以根据后面输入的PID来杀死进程<br>q 退出<br>h 获得帮助  </p>
+<h3 id="kill"><a href="#kill" class="headerlink" title="kill"></a>kill</h3><p>kill 终止进程<br>kill命令指定进程号的进程,需要配合ps使用.<br>使用方法:<br>kill [-signal] pid<br>信号值从0到15,其中9为绝对终止,可以处理一般信号无法终止的进程  </p>
+<h3 id="reboot-shutdown-init-关机重启"><a href="#reboot-shutdown-init-关机重启" class="headerlink" title="reboot,shutdown,init 关机重启"></a>reboot,shutdown,init 关机重启</h3><p>使用方法:<br>reboot 重新启动操作系统<br>shutdown -r now 重新启动操作系统,shutdown会给其他用户提示<br>shutdown -h now 立刻关机,其中now相当于时间为0的状态<br>shutdown -h 20:25 系统在今天的20:25会关机<br>shutdown -h +10 系统再过十分钟后自动关机<br>init 0 关机<br>init 6 重启  </p>
+<h3 id="df-检测磁盘空间"><a href="#df-检测磁盘空间" class="headerlink" title="df 检测磁盘空间"></a>df 检测磁盘空间</h3><p>df命令用于检测文件系统的磁盘空间占用和空余情况,可以显示所有文件系统对节点和磁盘块的使用情况<br>常用选项参数:<br>-a  显示所有文件系统的磁盘使用情况<br>-m 以1024字节为单位显示<br>-t 显示各指定文件系统的磁盘空间使用情况<br>-T 显示文件系统  </p>
+<h3 id="du-检测目录所占磁盘空间"><a href="#du-检测目录所占磁盘空间" class="headerlink" title="du 检测目录所占磁盘空间"></a>du 检测目录所占磁盘空间</h3><p>du命令用于统计目录或文件所占磁盘空间的大小,该命令的执行结果与df类似,du更侧重于磁盘的使用状况<br>使用方式 du [选项] 目录或文件名<br>常用选项参数:<br>-a 递归显示指定目录中各文件和子目录中文件占用的数据块<br>-s 显示指定文件或目录占用的数据块<br>-b 以字节为单位显示磁盘占用情况<br>-l 计算所有文件大小,对硬链接文件计算多次  </p>
+<h3 id="ifconfig-查看或配置网卡信息"><a href="#ifconfig-查看或配置网卡信息" class="headerlink" title="ifconfig 查看或配置网卡信息"></a>ifconfig 查看或配置网卡信息</h3><p>如果,我们只是敲:ifconfig 它会显示所有网卡的信息.<br>通过超级管理员权限,可以修改网卡的信息<br>如: sudo ifconfig 网卡名 ip地址  可以将指定网卡的ip地址修改为设置的  </p>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>ping 测试远程主机连通性<br>用法:<br>ping ip地址/域名  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/28/七牛云图床使用/" rel="next" title="使用七牛云图床管理博客图片">
+                <i class="fa fa-chevron-left"></i> 使用七牛云图床管理博客图片
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/07/nginx负载均衡服务器搭建/" rel="prev" title="nginx负载均衡服务器搭建">
+                nginx负载均衡服务器搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/06/linux学习/"
+     data-title="linux学习"
+     data-content=""
+     data-url="http://shayujie.win/2016/04/06/linux学习/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/06/linux学习/"
+           data-title="linux学习" data-url="http://shayujie.win/2016/04/06/linux学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wangjian" />
+          <p class="site-author-name" itemprop="name">wangjian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux目录"><span class="nav-number">1.</span> <span class="nav-text">linux目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#liunx常用指令"><span class="nav-number">2.</span> <span class="nav-text">liunx常用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#man命令"><span class="nav-number">2.1.</span> <span class="nav-text">man命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls命令"><span class="nav-number">2.2.</span> <span class="nav-text">ls命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件属性含义"><span class="nav-number">2.3.</span> <span class="nav-text">文件属性含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linux命令中通配符的使用"><span class="nav-number">2.4.</span> <span class="nav-text">linux命令中通配符的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出重定向"><span class="nav-number">2.5.</span> <span class="nav-text">输出重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat命令"><span class="nav-number">2.6.</span> <span class="nav-text">cat命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管道符"><span class="nav-number">2.7.</span> <span class="nav-text">|管道符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">2.8.</span> <span class="nav-text">clear</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cd"><span class="nav-number">2.9.</span> <span class="nav-text">cd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwd"><span class="nav-number">2.10.</span> <span class="nav-text">pwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir"><span class="nav-number">2.11.</span> <span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tree"><span class="nav-number">2.12.</span> <span class="nav-text">tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rmdir"><span class="nav-number">2.13.</span> <span class="nav-text">rmdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rm"><span class="nav-number">2.14.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln"><span class="nav-number">2.15.</span> <span class="nav-text">ln</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">2.16.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">2.17.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">2.18.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp"><span class="nav-number">2.19.</span> <span class="nav-text">cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mv"><span class="nav-number">2.20.</span> <span class="nav-text">mv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tar"><span class="nav-number">2.21.</span> <span class="nav-text">tar</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gzip"><span class="nav-number">2.22.</span> <span class="nav-text">gzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bzip2"><span class="nav-number">2.23.</span> <span class="nav-text">bzip2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip-uzip"><span class="nav-number">2.24.</span> <span class="nav-text">zip,uzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.25.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whoami"><span class="nav-number">2.26.</span> <span class="nav-text">whoami</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#who"><span class="nav-number">2.27.</span> <span class="nav-text">who</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exit"><span class="nav-number">2.28.</span> <span class="nav-text">exit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useradd"><span class="nav-number">2.29.</span> <span class="nav-text">useradd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passwd"><span class="nav-number">2.30.</span> <span class="nav-text">passwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userdel"><span class="nav-number">2.31.</span> <span class="nav-text">userdel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#su"><span class="nav-number">2.32.</span> <span class="nav-text">su</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看有哪些用户组"><span class="nav-number">2.33.</span> <span class="nav-text">查看有哪些用户组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groupadd-groupdel"><span class="nav-number">2.34.</span> <span class="nav-text">groupadd groupdel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usermod"><span class="nav-number">2.35.</span> <span class="nav-text">usermod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groups"><span class="nav-number">2.36.</span> <span class="nav-text">groups</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为创建的普通用户添加sudo权限"><span class="nav-number">2.37.</span> <span class="nav-text">为创建的普通用户添加sudo权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usermod-g-和-G的区别"><span class="nav-number">2.38.</span> <span class="nav-text">usermod -g 和 -G的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod"><span class="nav-number">2.39.</span> <span class="nav-text">chmod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chown"><span class="nav-number">2.40.</span> <span class="nav-text">chown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chgrp"><span class="nav-number">2.41.</span> <span class="nav-text">chgrp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cal"><span class="nav-number">2.42.</span> <span class="nav-text">cal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#date"><span class="nav-number">2.43.</span> <span class="nav-text">date</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ps"><span class="nav-number">2.44.</span> <span class="nav-text">ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top"><span class="nav-number">2.45.</span> <span class="nav-text">top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill"><span class="nav-number">2.46.</span> <span class="nav-text">kill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reboot-shutdown-init-关机重启"><span class="nav-number">2.47.</span> <span class="nav-text">reboot,shutdown,init 关机重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#df-检测磁盘空间"><span class="nav-number">2.48.</span> <span class="nav-text">df 检测磁盘空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#du-检测目录所占磁盘空间"><span class="nav-number">2.49.</span> <span class="nav-text">du 检测目录所占磁盘空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ifconfig-查看或配置网卡信息"><span class="nav-number">2.50.</span> <span class="nav-text">ifconfig 查看或配置网卡信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ping"><span class="nav-number">2.51.</span> <span class="nav-text">ping</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangjian</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"windwest"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DUQBQb6oCssm8GXEbBxE3MdC-gzGzoHsz", "g3B552waeaEE4e2aIwLa449e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

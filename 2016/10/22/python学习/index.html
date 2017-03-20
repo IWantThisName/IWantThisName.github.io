@@ -1,0 +1,1226 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="python注释
+单行注释以#开头,#右边的都是注释内容#打印hello worldprint(“hello world”)   
+多行注释使用三个单引号括起来的内容就是多行注释‘’’  打印hello world‘’’print(“hello world”)  
+
+python对中文的支持如果在文件中使用了中文,直接运行的话会报错,这是可以在程序上方加上一行coding=utf-8或者codin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习">
+<meta property="og:url" content="http://shayujie.win/2016/10/22/python学习/index.html">
+<meta property="og:site_name" content="windwest">
+<meta property="og:description" content="python注释
+单行注释以#开头,#右边的都是注释内容#打印hello worldprint(“hello world”)   
+多行注释使用三个单引号括起来的内容就是多行注释‘’’  打印hello world‘’’print(“hello world”)  
+
+python对中文的支持如果在文件中使用了中文,直接运行的话会报错,这是可以在程序上方加上一行coding=utf-8或者codin">
+<meta property="og:updated_time" content="2017-03-20T16:52:28.285Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习">
+<meta name="twitter:description" content="python注释
+单行注释以#开头,#右边的都是注释内容#打印hello worldprint(“hello world”)   
+多行注释使用三个单引号括起来的内容就是多行注释‘’’  打印hello world‘’’print(“hello world”)  
+
+python对中文的支持如果在文件中使用了中文,直接运行的话会报错,这是可以在程序上方加上一行coding=utf-8或者codin">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shayujie.win/2016/10/22/python学习/"/>
+
+
+
+
+
+  <title> python学习 | windwest </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43c1d4343254ae7e56121486f5c38b77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">windwest</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shayujie.win/2016/10/22/python学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangjian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="windwest">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="windwest" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-10-22T10:19:28+08:00">
+                2016-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/22/python学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/22/python学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/10/22/python学习/" class="leancloud_visitors" data-flag-title="python学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="python注释"><a href="#python注释" class="headerlink" title="python注释"></a>python注释</h3><ol>
+<li>单行注释<br>以#开头,#右边的都是注释内容<br>#打印hello world<br>print(“hello world”)   </li>
+<li>多行注释<br>使用三个单引号括起来的内容就是多行注释<br>‘’’<br>  打印hello world<br>‘’’<br>print(“hello world”)  </li>
+</ol>
+<h3 id="python对中文的支持"><a href="#python对中文的支持" class="headerlink" title="python对中文的支持"></a>python对中文的支持</h3><p>如果在文件中使用了中文,直接运行的话会报错,这是可以在程序上方加上一行coding=utf-8或者coding=gbk,具体编码格式怎么写根据你的文件编码确定  </p>
+<h3 id="python变量以及类型"><a href="#python变量以及类型" class="headerlink" title="python变量以及类型"></a>python变量以及类型</h3><p>python中定义变量方式为: 变量名 = 值   不需要指定具体的数据类型  </p>
+<p>但是python中还是有数据类型的,分为以下几种<br>Numbers(数字)  Boolean布尔类型  String字符串 List列表 Tuple元组 Dictionary字典<br>Numbers具体还分为int 有符号整型 long 长整型(也可以代表八进制和十六禁止) float 浮点类型 complex 复数<br>Boolean具体分为True 和 False  </p>
+<p>那么该怎么知道一个变量具体的数据类型呢<br>在python中,只要定义了一个变量,而且它有数据,那么它的类型就已经确定了,不需要去主动说明具体类型,系统会自动辨别<br>可以使用type 变量的名字,来查看变量的类型  </p>
+<h3 id="python标识符"><a href="#python标识符" class="headerlink" title="python标识符"></a>python标识符</h3><p>python中的标识符和其他语言要求的规则一样,有字母数字下划线组成且数字不能开头,并且区分大小写  </p>
+<h3 id="python的关键字"><a href="#python的关键字" class="headerlink" title="python的关键字"></a>python的关键字</h3><p>大致上和其他语言差不多<br>可以通过<br>import keyword<br>keyword.kwlist<br>查看当前python版本里的关键字  </p>
+<h3 id="python的格式化输出"><a href="#python的格式化输出" class="headerlink" title="python的格式化输出"></a>python的格式化输出</h3><p>和c语言很像,可以在字符串使用%数据类型进行格式化输出,因为python中的+不像java中可以充当连接符.当其他数据类型加到字符串中,可以使用格式化符进行格式化输出<br>age = 18<br>name = “xiaohua”<br>print(“我的姓名是%s,年龄是%d”%(name,age))  </p>
+<h3 id="常用的格式符号"><a href="#常用的格式符号" class="headerlink" title="常用的格式符号"></a>常用的格式符号</h3><p>%c 字符<br>%s 通过str()字符串转换来格式化<br>%i 有符号十进制整数<br>%d 有符号十进制整数<br>%u 无符号十进制整数<br>%o 八进制整数<br>%x 十六进制整数(小写字母)<br>%X 十六进制整数(大写字母)<br>%e 索引符号(小写 ‘e’)<br>%E 索引符号(大写 ‘e’)<br>%f 浮点实数<br>%g %f和%e的简写<br>%G %f和%E的简写  </p>
+<p>换行输出 \n<br>print(“123456—–”)  #会在一行显示<br>print(“123456\n—–”) #\n后面的内容会在下一行显示  </p>
+<h3 id="获取键盘输入"><a href="#获取键盘输入" class="headerlink" title="获取键盘输入"></a>获取键盘输入</h3><p>python2中获取键盘输入的是raw_input函数,用法如下:<br>password = raw_input(“请输入密码:”)<br>print ‘您刚刚输入的密码是:’,password  </p>
+<p>还有input函数也可以获取,用法与raw_input类型,但是input会将传入的值当作表达式执行,要是不能执行就会报错  </p>
+<p>python3中获取键盘输入的只有input函数,与python2的raw_input函数功能一样  </p>
+<h3 id="python的运算符"><a href="#python的运算符" class="headerlink" title="python的运算符"></a>python的运算符</h3><p>算术运算符:+ - <em> / // % <strong><br>需要注意的是python的/结果是个浮点数,//类似于其他语言的/,</strong>是幂运算,比如10的20次方就是用10*</em>20来表示  </p>
+<p>赋值运算符 =<br>python中支持同时赋值给多个变量  a,b = 1,2  </p>
+<p>复合赋值运算符 += -= <em>= /= %= *</em>= //=  用法和其他语言一样  </p>
+<h3 id="常用的数据类型转换"><a href="#常用的数据类型转换" class="headerlink" title="常用的数据类型转换"></a>常用的数据类型转换</h3><p>int(x[,base])  将x转换为一个整数<br>long(x,[,base]) 将x转换为一个长整数<br>float(x) 将x转换到一个浮点数<br>complex(real[,imag]) 创建一个复数<br>str(x) 将对象x转换为字符串<br>repr(x) 将对象x转换为表达式字符串<br>eval(str) 用来计算在字符串中的有效Python表达式,并返回一个对象<br>tuple(s) 将序列s转换为一个元组<br>list(s) 将序列s转换为一个列表<br>chr(x) 将一个整数转换为一个字符<br>unichr(x) 将一个整数转换为unicode字符<br>ord(x) 将一个字符转换为它的整数值<br>hex(x) 将一个整数转换为一个十六进制字符串<br>oct(x) 将一个整数转换为一个八进制字符串  </p>
+<h3 id="python中的判断"><a href="#python中的判断" class="headerlink" title="python中的判断"></a>python中的判断</h3><p>if 要判断的条件:<br>    条件成立时,要做的事  </p>
+<p>例子 从键盘获取自己的年龄,判断是否大于或者等于18岁,如果满足就输出”哥,已成年,网吧可以去了”<br>age = input(“请输入你的年龄”)<br>age = int(age)<br>if age &gt;= 18:<br>    print(“哥,已成年,网吧可以去了”)<br>else:<br>    print(“你还没有成年,等长大再去网吧吧”)  </p>
+<p>值得注意的是,input获取到的数据是字符串,需要使用int()函数将获取到值转成int  </p>
+<h3 id="python的关系运算符"><a href="#python的关系运算符" class="headerlink" title="python的关系运算符"></a>python的关系运算符</h3><p>== != &lt;&gt; &gt; &gt;= &lt; &lt;=<br>其中&lt;&gt;类似于!=  </p>
+<h3 id="python的逻辑运算符"><a href="#python的逻辑运算符" class="headerlink" title="python的逻辑运算符"></a>python的逻辑运算符</h3><p>and or not  </p>
+<h3 id="python的判断结构"><a href="#python的判断结构" class="headerlink" title="python的判断结构"></a>python的判断结构</h3><p>有以下几种    </p>
+<pre><code>1 .  if 判断条件:  
+         操作  
+2.   if 判断条件:  
+         操作  
+     else :  
+         操作  
+3.   if 判断条件:  
+         操作  
+     elif 判断条件:  
+         操作  
+     elif 判断条件:  
+         操作  
+     else:  
+         操作  
+</code></pre><p>第三种类似于java的 if  else if  else结构<br>python的判断结构也是可以嵌套的  </p>
+<h3 id="python的循环结构"><a href="#python的循环结构" class="headerlink" title="python的循环结构"></a>python的循环结构</h3><p>while 循环条件:<br>    操作<br>用发和其他语言一样  </p>
+<h3 id="python中的for循环"><a href="#python中的for循环" class="headerlink" title="python中的for循环"></a>python中的for循环</h3><p>用法为 for 变量名 in 序列<br>python中的for循环可以遍历一切可以遍历的数据<br>python中for和while都可以加上else分支,当没有数据时执行else分支  </p>
+<h3 id="python中的break和continue关键字"><a href="#python中的break和continue关键字" class="headerlink" title="python中的break和continue关键字"></a>python中的break和continue关键字</h3><p>用法和java一样<br>break和continue都只能用于循环结构中,并且在循环多层嵌套的情况在,只对最近一层循环有效  </p>
+<h3 id="python中的字符串"><a href="#python中的字符串" class="headerlink" title="python中的字符串"></a>python中的字符串</h3><p>在python中,被单引号或者双引号括起来的内容就是字符串.三引号括起来的内容是多行注释  </p>
+<h3 id="python中的索引和切片"><a href="#python中的索引和切片" class="headerlink" title="python中的索引和切片"></a>python中的索引和切片</h3><p>索引和其他语言一样,都是从0开始<br>不过python中还有另外一个用法叫切片<br>切片是指对操作的对象截取其中一部分的操作.字符串,列表,元组都支持切片操作<br>切片的语法:[起始:结束:步长]<br>注意:选取的区间属于左闭右开型,即从”起始”位开始,到”结束”位的前一位结束(不包含结束位本身)  </p>
+<p>比如取字符串前三个字符<br>name = ‘abcdef’<br>print(name[0:3])<br>实现倒序输出<br>name = ‘abcdef’<br>print(name[-1:0:-1])  </p>
+<h3 id="字符串常见操作"><a href="#字符串常见操作" class="headerlink" title="字符串常见操作"></a>字符串常见操作</h3><ol>
+<li><p>find<br>检测str是否包含在mystr中,如果是返回开始的索引值,否则返回-1<br>mystr.find(str,start=0,end=len(mystr))<br>如果不指定起始和终点值,默认是查询全部  </p>
+</li>
+<li><p>index<br>跟find()方法一样,只不过如果str不在 mystr中会报一个异常.<br>mystr.index(str,start=0,end=len(mystr))  </p>
+</li>
+<li><p>count<br>返回str在start和end之间 在mystr里面出现的次数<br>mystr.count(str,start=0,end=len(mystr))  </p>
+</li>
+<li><p>replace<br>把mystr中的str1替换成str2,如果count指定,则替换不超过count次.<br>mystr.replace(str1,str2,mystr.count(str1))<br>不指定次数的话,默认是将mystr中的所有str1都替换成str2  </p>
+</li>
+<li><p>split<br>以str为分隔符切片mystr,如果maxsplit有指定值,则仅分隔maxsplit次<br>mystr.split(str=””,2)<br>指定2则会分隔两次,生成三个子字符串  </p>
+</li>
+<li><p>capitalize<br>把字符串的第一个字符大写<br>mystr.capitalize()<br>“hello”.capitalize() –&gt; Hello  </p>
+</li>
+<li><p>title<br>把字符串的每个单词首字母大写<br>“hello world”.title() –&gt; Hello World  </p>
+</li>
+<li><p>startswith<br>检查字符串是否以指定字符串开头,是则返回True,否则返回False,区分大小写<br>mystr = ‘hello world’<br>mystr.startswith(‘hello’)  –&gt; True<br>mystr.startswith(‘Hello’)  –&gt; False  </p>
+</li>
+<li><p>endswith<br>检查字符串是否以指定字符串结束,如果是返回True,否则返回False,区分大小写,用法和startswith一样  </p>
+</li>
+<li><p>lower<br>将字符串中的所有大写字符转换为小写<br>“HELLO world”.lower()  –&gt; hello world  </p>
+</li>
+<li><p>upper<br>将字符串中的所有小写字符转换为大写<br>“hello world”.upper()  –&gt; HELLO WORLD  </p>
+</li>
+<li><p>ljust<br>返回一个原字符串左对齐,并使用空格填充至长度width的新字符串<br>mystr.ljust(width)<br>“hello”.ljust(10)  –&gt; “hello     “  (在右边填充了五个空格)  </p>
+</li>
+<li><p>rjust<br>返回一个原字符串右对齐,并使用空格填充至width的新字符串<br>mystr.rjust(width)<br>“hello”.rjust(10)  –&gt; “     hello”  (在左边填充了五个空格)  </p>
+</li>
+<li><p>center<br>返回一个原字符串居中,并使用空格填充至长度width的新字符串<br>mystr.center(width)<br>“hello”.center(10)  –&gt; “  hello   “ (在左边填充了两个空格,在右边填充了三个空格)  </p>
+</li>
+<li><p>lstrip<br>删除mystr左边的空白字符<br>mystr.lstrip()<br>“    hello”.lstrip() –&gt; “hello”  </p>
+</li>
+<li><p>rstrip<br>删除mystr右边的空白字符<br>mystr.rstrip()<br>“hello    “.rstrip()  –&gt; “hello”  </p>
+</li>
+<li><p>strip<br>删除mystr字符串两端的空白字符<br>mystr.strip()<br>“   hello  “.strip() –&gt; “hello”  </p>
+</li>
+<li><p>rfind<br>类似于find()函数,不过是从右边开始查找<br>mystr.rfind(str,start=0,end=len(mystr))  </p>
+</li>
+<li><p>rindex<br>类似于index()函数,不过是从右边开始查找<br>mystr.rindex(str,start=0,end=len(mystr))  </p>
+</li>
+<li><p>partition<br>把mystr以str分割成三部分,str前,str和str后<br>mystr.partition(str)<br>“hello world python2 and python3”.partition(‘python’) –&gt; (‘hello world ‘,’python’,’2 and python3’)  </p>
+</li>
+<li><p>rpartition<br>类似于partition()函数,不过是从右边开始<br>mystr.rpartition()<br>“hello world python2 and python3”.rpartition(‘python’) –&gt; (“hello world python2 and “,”python”,”3”)  </p>
+</li>
+<li><p>splitlines<br>按照行分割,返回一个包含各行内容作为元素的列表<br>mystr.splitlines()<br>“hello\nworld”.splitlines()  –&gt; [‘hello’,’world’]  </p>
+</li>
+<li><p>isalpha<br>如果mystr所有字符都是字母,则返回True,否则返回False<br>mystr.isalpha()<br>“abc”.isalpha()  –&gt; True<br>“123”.isalpha()  –&gt; False  </p>
+</li>
+<li><p>isdigit<br>如果mystr只包含数字则返回True,否则返回False<br>mystr.isdigit()<br>“abc”.isdigit()  –&gt; False<br>“123”.isdigit()  –&gt; True  </p>
+</li>
+<li><p>isalnum<br>如果mystr所有字符都是字母或者数字,则返回True,否则返回False<br>mystr.isalnum()<br>“123”.isalnum()  –&gt; True<br>“abc”.isalnum()  –&gt; True<br>“123abc”.isalnum()  –&gt; True<br>“abc nttt1”.isalnum()  –&gt; False  </p>
+</li>
+<li><p>isspace<br>如果mystr中只包含空格,则返回True,否则返回False<br>mystr.isspace()<br>“   “.isspace()  –&gt; True<br>“abc  “.isspace() –&gt; False  </p>
+</li>
+<li><p>join<br>在列表中的每一个元素后面插入mystr,最后一个元素后面不插入<br>mystr.join(arr)<br>arr = [‘my’,’name’,’is’,’python’]<br>‘ ‘.join(arr) –&gt; ‘my name is python’  </p>
+</li>
+</ol>
+<h3 id="python中的列表"><a href="#python中的列表" class="headerlink" title="python中的列表"></a>python中的列表</h3><p>类似于java中的list和数组的混合体<br>列表的格式<br>变量名=[元素一,元素二,元素三]  </p>
+<p>arr = [1,2,3,4,5,”上山打老虎”]<br>python中的列表元素可以是不同类型的  </p>
+<p>获取列表中的元素可以通过索引或者切片,索引从0开始<br>arr[0]  –&gt; 1  </p>
+<h3 id="遍历列表"><a href="#遍历列表" class="headerlink" title="遍历列表"></a>遍历列表</h3><p>通过for循环  </p>
+<pre><code>for i in arr:
+    print(i)
+</code></pre><p>将会在键盘上将列表中的所有元素依次打印出来  </p>
+<p>通过while循环<br>length = len(arr) #通过len函数获得列表的长度<br>i = 0  #定义一个计数器,充当索引  </p>
+<pre><code>while i &lt; length:
+    print(arr[i])
+    i += 1   #计数器加1,直到超过len,结束循环
+</code></pre><p>也会依次打印列表中的元素  </p>
+<h3 id="python列表的相关操作"><a href="#python列表的相关操作" class="headerlink" title="python列表的相关操作"></a>python列表的相关操作</h3><p>列表中存放的数据是可以进行操作的,例如”增”,”删”,”改”  </p>
+<p>增加元素<br>append<br>通过append可以向列表添加元素<br>    arr = [1,2,3,4]<br>    arr.append(5)<br>    for i in arr:<br>        print(i)</p>
+<p>append添加的元素会在列表后面追加  </p>
+<p>extend<br>通过extend可以将另一个集合中的元素逐以添加到列表中<br>arr2 = [6,6]<br>arr.append(arr2)  #直接append列表,会把列表当作一个元素加入<br>arr.extend(arr2)  #用extend可以将arr2中的元素一个一个添加到arr中  </p>
+<p>insert<br>在指定位置index前插入元素object  用法:arr.insert(index,object)<br>a = [0,1,2]<br>a.insert(1,3) #在索引1位置插入3  结果为[0,3,1,2]  </p>
+<p>修改元素<br>通过下标来确定要修改的是哪个元素,然后进行修改<br>arr = [0,1,2]<br>arr[1] = 3 #将列表arr索引1位置的元素修改为3  结果为[0,3,2]  </p>
+<p>查找元素<br>in 如果列表中存在该元素,则返回True,否则返回False<br>not in 如果列表中不存在该元素,则返回True,否则返回False  </p>
+<p>用法<br>arr = [1,2,3]<br>if 1 in arr:   #判断arr中存在1不<br>  print(“有”)<br>if 1 not in arr:  #判断arr中不存在1不<br>  print(“没有”)   #结果是有  </p>
+<p>在列表中也可以用index和count方法,用法和字符串中的相同<br>arr = [1,2,3]<br>arr.index(1) #获得列表arr中元素值为1的索引,结果是0<br>arr.count(1) #获得列表arr中元素值为1出现的次数.结果是1  </p>
+<p>删除元素<br>del  根据下标进行删除<br>pop  删除最后一个元素<br>remove  根据元素的值进行删除  </p>
+<p>arr = [1,2,3,4,5]<br>del arr[0] #删除了列表中的索引0处的元素  结果为[2,3,4,5]<br>arr.pop() #删除了列表中的最后一个元素  结果为[2,3,4]<br>arr.remove(3) #删除列表中元素值为3的元素 结果为[2,4] (列表中如果有多个要删除的元素,只会删除从左边起第一个匹配到的元素)  </p>
+<h3 id="列表排序"><a href="#列表排序" class="headerlink" title="列表排序"></a>列表排序</h3><p>sort sort方法是将list按特定顺序重新排列,默认为从小到大,参数reverse=True,可改为倒序,由大到小<br>reverse方法是将list逆置  </p>
+<p>arr = [1,4,3,2]<br>a.reverse() #将列表反转,结果为 [2,3,4,1]<br>a.sort() #将列表从小到大排列,结果为 [1,2,3,4]<br>a.sort(reverse=True) #将列表从大到小排列,结果为 [4,3,2,1]  </p>
+<h3 id="列表的嵌套"><a href="#列表的嵌套" class="headerlink" title="列表的嵌套"></a>列表的嵌套</h3><p>列表中的元素又是一个列表,那么这就是列表的嵌套<br>直接访问列表中的列表可以像java中访问二维数组一样<br>arr = [[1,2],[3,4],[5,6]]<br>arr[0][0]  #访问外面列表的第一个元素列表中的第一个元素,结果为1  </p>
+<h3 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h3><p>元组与列表类似,不过元组中的数据是不可以更改的,使用小括号括起来的是元组,列表是使用中括号括起来的<br>aTuple = (1,2)  </p>
+<p>访问元组中的数据和访问列表一样,指定索引就行,索引从0开始<br>aTuple[0]  #访问元组索引为0处的元素 结果为1  </p>
+<p>一旦定义了元组,元组内的数据就不可以更改了,增加删除修改都不可以  </p>
+<p>元组的内置函数有count,index,用法与列表和字符串相同<br>aTuple.index(1) #获取元素值为1的索引,当有多个元素值为1时,返回从左起,匹配的第一个 结果为0<br>aTuple.count(1) #获取元组中元素值为1的个数 结果为1  </p>
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p>python的字典类似于java中的map,由键值对组成,用花括号括起来,键值对用:隔开,键值对之间用,隔开<br>dict = {“a”:1,”b”:2,”c”,3}  </p>
+<p>获取字典中的值,不像元组和列表那样使用索引,而是使用键<br>dict[“a”] #获取字典中键为a的值  结果为1  </p>
+<p>若访问不存在的键,则会报错<br>如 dict[“d”] #因为字典中不存在d这个键,所以这样写会报错  </p>
+<p>当我们不确定字典中有没有这个键的时候,可以使用get方法,不会报错<br>v = dict.get(“d”) #字典中没有d这个键,用get方法获取到的值v,是None<br>type(v) #结果是<type 'nonetype'=""><br>使用get方法的时候还可以设置默认值,当指定的键不存在时,就会返回默认值<br>v = dict.get(“d”,4) #因为dict字典中没有d这个键,而又设置了默认值为4,则v的值为4  </type></p>
+<h3 id="字典的操作"><a href="#字典的操作" class="headerlink" title="字典的操作"></a>字典的操作</h3><p>修改元素<br>列表是通过索引确定元素进而进行修改,字典是通过键确定元素然后进行修改<br>dict[“a”] = 5 #修改字典中键为a的值为5,则字典为 {“a”:5.”b”:2,”c”,3}<br>列表中对不存在的索引进行修改会报错,而字典对不存在的键进行修改操作(不如说是赋值操作),会将这个不存在的键和值添加到字典中  </p>
+<p>删除元素<br>del 删除指定的元素或者删除字典<br>clear() 清空字典中的元素  </p>
+<p>del dict[“a”] #会将字典中键为a的元素删除<br>del dict  直接删除dict字典,再次访问会报错<br>dict.clear() #清空字典,删除字典中的所有元素,但是字典dict还是存在的 可以访问 结果为{}   </p>
+<h3 id="字典的常用方法"><a href="#字典的常用方法" class="headerlink" title="字典的常用方法"></a>字典的常用方法</h3><ol>
+<li><p>len<br>获取字典中的键值对个数<br>dict = {“a”:1,”b”:2,”c”:3}<br>len(dict) #结果为3  </p>
+</li>
+<li><p>keys<br>返回一个包含字典所有key值的列表<br>dict.keys() #结果为 [“a”,”b”,”c”]  </p>
+</li>
+<li><p>values<br>返回一个包含字典所有value的列表<br>dict.values() #结果为[1,2,3]  </p>
+</li>
+<li><p>items<br>返回一个包含所有(键,值)元组的列表<br>dict.items() #结果为[(“a”,1),(“b”,2),(“c”,3)]  </p>
+</li>
+<li><p>has_key<br>如果key在字典中,返回True,否则返回False<br>dict.has_key(“a”) #有a这个键,返回True<br>dict.has_key(“d”) #没有d这个键,返回False  </p>
+</li>
+</ol>
+<h3 id="python中的遍历"><a href="#python中的遍历" class="headerlink" title="python中的遍历"></a>python中的遍历</h3><p>通过for xx in yyy:  的语法结构,可以遍历字符串,列表,元组,字典等数据结构  </p>
+<h3 id="字典的遍历"><a href="#字典的遍历" class="headerlink" title="字典的遍历"></a>字典的遍历</h3><ol>
+<li><p>遍历字典的key(键)<br>for key in dict.keys():</p>
+<pre><code>print(key)           #结果是a b c
+</code></pre></li>
+<li><p>遍历字典的value(值)<br>for value in dict.values():<br> print(value)         #结果是1 2 3  </p>
+</li>
+<li><p>遍历字典的项(元素)<br>for item in dict.items():<br> print(item)          #结果是(“a”,1) (“b”,2) (“c”,3)  </p>
+</li>
+<li><p>遍历字典的key-value(键值对)<br>for key,value in dict.items():<br> print(“key=%s,value=%s”%(key,value))  #结果是 key=a,value=1   key=b,value=2   key=c,value=3  </p>
+</li>
+</ol>
+<h3 id="如何实现带索引的遍历"><a href="#如何实现带索引的遍历" class="headerlink" title="如何实现带索引的遍历"></a>如何实现带索引的遍历</h3><ol>
+<li><p>使用计数器充当索引<br>arr = [1,2,3,4,5]<br>i = 0<br>for a in arr:<br> print(“%d,%d”%(i,a))  </p>
+</li>
+<li><p>使用enumerate()方法<br>for i,a in enumerate(arr):<br> print(“%d,%d”%(i,a)) </p>
+</li>
+</ol>
+<h3 id="公共方法"><a href="#公共方法" class="headerlink" title="公共方法"></a>公共方法</h3><pre><code>运算符      python表达式        结果                       描述                支持的数据类型
+  +         [1,2]+[3,4]      [1,2,3,4]                     合并                字符串,列表,元组
+  *         &quot;Hi!&quot; * 4      [&quot;Hi!&quot;,&quot;Hi!&quot;,&quot;Hi!&quot;,&quot;Hi&quot;]        复制                字符串,列表,元组
+  in        3 in (1,2,3)        True                    元素是否存在        字符串,列表,元组,字典
+ not in     4 not in (1,2,3)    True                  元素是否不存在        字符串,列表,元组,字典
+</code></pre><h3 id="python内置函数"><a href="#python内置函数" class="headerlink" title="python内置函数"></a>python内置函数</h3><p>cmp(item1,item2)     比较两个元素值<br>len(item)            计算容器中元素个数<br>max(item)            返回容器中元素最大值<br>min(item)            返回容器中元素最小值<br>del(item)            删除变量<br>注意:cmp在比较字典数据时,先比较键,再比较值.  cmp函数是通过ascII码进行比较的<br>     len在操作字典数据时,返回的是键值对个数<br>     del方法可以不加空格 直接del item  </p>
+<p>python中的引用和java一样<br>python中可以通过id()方法判断两个元素是否是同一个  </p>
+<h3 id="可变类型与不可变类型"><a href="#可变类型与不可变类型" class="headerlink" title="可变类型与不可变类型"></a>可变类型与不可变类型</h3><p>可变类型,值可以改变:  列表 字典<br>不可变类型,值不可以改变: 数值类型(int long boolean float)  字符串 元组  </p>
+<h3 id="python中的函数"><a href="#python中的函数" class="headerlink" title="python中的函数"></a>python中的函数</h3><p>定义函数<br>  def 函数名():<br>      代码  </p>
+<p>def printStr():<br>   print(“Hello world”)<br>调用函数  直接函数名() 调用  printStr()  </p>
+<h3 id="函数的文档注释"><a href="#函数的文档注释" class="headerlink" title="函数的文档注释"></a>函数的文档注释</h3><p>在函数代码块第一行写的字符串会被认为是文档注释<br>def add(a,b):<br>   “打印两个数的和”<br>   print(“和为%d”%(a+b))  </p>
+<p>通过help()方法可以获得函数的文档注释<br>help(add)  </p>
+<p>python的函数和java函数 除了定义写法不同,其他都一样<br>定义带参数的函数,传入参数时要是不指定传给具体的形参,传入的值按照形参的顺序依次赋值<br>add(1,2)  1–&gt;a  2–&gt;b<br>add(b=2,a=1)  可以这样给具体的形参赋值<br>add(b=2,1)  当指定具体的形参了,后面的参数都需要指定 不然会报错SyntaxError: positional   argument follows keyword argument  </p>
+<p>函数的返回值<br>def add(a,b)<br>   return a+b<br>在函数内部使用return关键字返回了一个值,那么这个函数就有返回值了,可以在调用的时候定义一个变量接收<br>sum = add(1,2)  sum的值为3  </p>
+<p>函数嵌套  在函数内部还可以调用其他函数    </p>
+<p>python中的局部变量和全局变量和java中的相仿<br>当在方法中相用全局变量时,需要在变量名前加上global关键字,以标明这个变量是全局变量  </p>
+<p>在函数中不加global无法修改全局变量的原因是,在函数内部无法更改全局变量的指向..所以可变数据类型不加global也可以进行修改,以为地址值并不会改变  而不可变类型值改变就是地址值改变,所以要加上global  </p>
+<p>python中的函数可以返回多个值,本质是返回了一个元组,元组中的元素是这多个值  </p>
+<p>python中还可以声明缺省参数,当没有为该形参传入值时,使用默认值<br>def printInfo(name,age=25):<br>    print(“name:%s”%name)<br>    print(“age:%s”%age)  </p>
+<p>printInfo(“小王”)  #因为没有为age传入值,所以使用默认值25  打印 小王 25<br>printInfo(“小吴”,20) #age形参传入了参数,使用传入的参数  打印 小吴 20  </p>
+<p>需要注意的是,缺省参数后面不能跟没有默认值的形参,不然会报错 所以缺省参数都会放在最后面<br>def printInfo(name,age=25,phone)<br>   print..  </p>
+<p>上面定义的函数会报错 ,因为在缺省参数后面有没有定义缺省值的参数  </p>
+<p>python的不定长参数的意义同java的可变参数一样,不过python的不定长参数比java的复杂的多<br>def fun(a,b,<em>c,**d)    </em>接收普通参数,所有参数形成一个元组 **接收键值对,所有参数形成一个字典  </p>
+<p>fun(1,2,3,4,5,a=1,b=2,c=3)    形参c为(3,4,5) 形参d为{“a”:1,”b”:2,”c”:3}  最前面两个参数1,2赋值给a,b  </p>
+<p>t = (1,1,1)<br>f = {“a”:1,”b”:2}<br>fun(1,2,<em>t,</em>f)<br>fun(1,2,t,f)  </p>
+<p>上面两种直接传入元组和字典的方式<br>第一种 指定了t是传个元组的,f是传给字典的,所以c = t  d = f<br>第二种 没有指定,又t和f都是普通参数 不是键值对 所以 c = (t,f)  而d为空  </p>
+<p>python中参数传递类似与java<br>python中的不可变类型传递类似于java中的基本数据类型,所以是值传递<br>python中的可变类型传递类似于java中的引用数据类型,所以是引用传递(本质也是值传递)  </p>
+<h3 id="python中的匿名函数"><a href="#python中的匿名函数" class="headerlink" title="python中的匿名函数"></a>python中的匿名函数</h3><p>用lambda关键字能创建小型匿名函数.匿名函数主要是省略了def声明函数<br>语法:<br>lambda [arg1[,arg2,…argn]]:expression<br>如下案例<br>sum = lambda arg1,arg2:arg1 + arg2<br>lambda函数能接收任何数量的参数 但只能返回一个表达式的值<br>匿名函数不能直接调用print,因为lambda需要一个表达式  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/11/lucene学习/" rel="next" title="lucene学习">
+                <i class="fa fa-chevron-left"></i> lucene学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/25/python学习2/" rel="prev" title="python学习2">
+                python学习2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/10/22/python学习/"
+     data-title="python学习"
+     data-content=""
+     data-url="http://shayujie.win/2016/10/22/python学习/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/22/python学习/"
+           data-title="python学习" data-url="http://shayujie.win/2016/10/22/python学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wangjian" />
+          <p class="site-author-name" itemprop="name">wangjian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#python注释"><span class="nav-number">1.</span> <span class="nav-text">python注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python对中文的支持"><span class="nav-number">2.</span> <span class="nav-text">python对中文的支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python变量以及类型"><span class="nav-number">3.</span> <span class="nav-text">python变量以及类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python标识符"><span class="nav-number">4.</span> <span class="nav-text">python标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的关键字"><span class="nav-number">5.</span> <span class="nav-text">python的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的格式化输出"><span class="nav-number">6.</span> <span class="nav-text">python的格式化输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的格式符号"><span class="nav-number">7.</span> <span class="nav-text">常用的格式符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取键盘输入"><span class="nav-number">8.</span> <span class="nav-text">获取键盘输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的运算符"><span class="nav-number">9.</span> <span class="nav-text">python的运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的数据类型转换"><span class="nav-number">10.</span> <span class="nav-text">常用的数据类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的判断"><span class="nav-number">11.</span> <span class="nav-text">python中的判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的关系运算符"><span class="nav-number">12.</span> <span class="nav-text">python的关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的逻辑运算符"><span class="nav-number">13.</span> <span class="nav-text">python的逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的判断结构"><span class="nav-number">14.</span> <span class="nav-text">python的判断结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的循环结构"><span class="nav-number">15.</span> <span class="nav-text">python的循环结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的for循环"><span class="nav-number">16.</span> <span class="nav-text">python中的for循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的break和continue关键字"><span class="nav-number">17.</span> <span class="nav-text">python中的break和continue关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的字符串"><span class="nav-number">18.</span> <span class="nav-text">python中的字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的索引和切片"><span class="nav-number">19.</span> <span class="nav-text">python中的索引和切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串常见操作"><span class="nav-number">20.</span> <span class="nav-text">字符串常见操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的列表"><span class="nav-number">21.</span> <span class="nav-text">python中的列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历列表"><span class="nav-number">22.</span> <span class="nav-text">遍历列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python列表的相关操作"><span class="nav-number">23.</span> <span class="nav-text">python列表的相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表排序"><span class="nav-number">24.</span> <span class="nav-text">列表排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表的嵌套"><span class="nav-number">25.</span> <span class="nav-text">列表的嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组"><span class="nav-number">26.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典"><span class="nav-number">27.</span> <span class="nav-text">字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典的操作"><span class="nav-number">28.</span> <span class="nav-text">字典的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典的常用方法"><span class="nav-number">29.</span> <span class="nav-text">字典的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的遍历"><span class="nav-number">30.</span> <span class="nav-text">python中的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典的遍历"><span class="nav-number">31.</span> <span class="nav-text">字典的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现带索引的遍历"><span class="nav-number">32.</span> <span class="nav-text">如何实现带索引的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共方法"><span class="nav-number">33.</span> <span class="nav-text">公共方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python内置函数"><span class="nav-number">34.</span> <span class="nav-text">python内置函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变类型与不可变类型"><span class="nav-number">35.</span> <span class="nav-text">可变类型与不可变类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的函数"><span class="nav-number">36.</span> <span class="nav-text">python中的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的文档注释"><span class="nav-number">37.</span> <span class="nav-text">函数的文档注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python中的匿名函数"><span class="nav-number">38.</span> <span class="nav-text">python中的匿名函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangjian</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"windwest"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DUQBQb6oCssm8GXEbBxE3MdC-gzGzoHsz", "g3B552waeaEE4e2aIwLa449e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
