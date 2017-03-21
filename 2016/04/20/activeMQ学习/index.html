@@ -99,16 +99,16 @@
 主要特点：  
 
 多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby, Per">
-<meta property="og:image" content="http://shayujie.win/![注册信息](http://oles6cv6e.bkt.clouddn.com/activeMq101.png">
-<meta property="og:image" content="http://shayujie.win/![注册信息](http://oles6cv6e.bkt.clouddn.com/activeMq102.png">
-<meta property="og:updated_time" content="2017-03-21T15:42:56.028Z">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/activeMq101.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/activeMq102.png">
+<meta property="og:updated_time" content="2017-03-21T15:49:29.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="activeMq学习">
 <meta name="twitter:description" content="什么是ActiveMQActiveMQ 是Apache出品，最流行的，能力强劲的开源消息总线。ActiveMQ 是一个完全支持JMS1.1和J2EE 1.4规范的 JMS Provider实现,尽管JMS规范出台已经是很久的事情了,但是JMS在当今的J2EE应用中间仍然扮演着特殊的地位。  
 主要特点：  
 
 多种语言和协议编写客户端。语言: Java, C, C++, C#, Ruby, Per">
-<meta name="twitter:image" content="http://shayujie.win/![注册信息](http://oles6cv6e.bkt.clouddn.com/activeMq101.png">
+<meta name="twitter:image" content="http://oles6cv6e.bkt.clouddn.com/activeMq101.png">
 
 
 
@@ -448,9 +448,9 @@
 <p>JMS定义了五种不同的消息正文格式，以及调用的消息类型，允许你发送并接收以一些不同形式的数据，提供现有消息格式的一些级别的兼容性。  </p>
 <p>　　· StreamMessage – Java原始值的数据流<br>　　· MapMessage–一套名称-值对<br>　　· TextMessage–一个字符串对象<br>　　· ObjectMessage–一个序列化的 Java对象<br>　　· BytesMessage–一个字节的数据流  </p>
 <h3 id="ActiveMQ的安装"><a href="#ActiveMQ的安装" class="headerlink" title="ActiveMQ的安装"></a>ActiveMQ的安装</h3><p><a href="http://shayujie.win/2016/04/20/activeMQ%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">activeMq服务器搭建</a></p>
-<h3 id="ActiveMQ的使用方法"><a href="#ActiveMQ的使用方法" class="headerlink" title="ActiveMQ的使用方法"></a>ActiveMQ的使用方法</h3><p><img src="![注册信息](http://oles6cv6e.bkt.clouddn.com/activeMq101.png" alt="图片">  </p>
+<h3 id="ActiveMQ的使用方法"><a href="#ActiveMQ的使用方法" class="headerlink" title="ActiveMQ的使用方法"></a>ActiveMQ的使用方法</h3><p><img src="http://oles6cv6e.bkt.clouddn.com/activeMq101.png" alt="注册信息">  </p>
 <h4 id="Queue-点对点通信"><a href="#Queue-点对点通信" class="headerlink" title="Queue(点对点通信)"></a>Queue(点对点通信)</h4><h5 id="Producer-生产者"><a href="#Producer-生产者" class="headerlink" title="Producer(生产者)"></a>Producer(生产者)</h5><p>生产者：生产消息，发送端。<br>把jar包添加到工程中。使用5.11.2版本的jar包。  </p>
-<p><img src="![注册信息](http://oles6cv6e.bkt.clouddn.com/activeMq102.png" alt="图片"> </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/activeMq102.png" alt="注册信息"> </p>
 <p>第一步：创建ConnectionFactory对象，需要指定服务端ip及端口号。<br>第二步：使用ConnectionFactory对象创建一个Connection对象。<br>第三步：开启连接，调用Connection对象的start方法。<br>第四步：使用Connection对象创建一个Session对象。<br>第五步：使用Session对象创建一个Destination对象（topic、queue），此处创建一个Queue对象。<br>第六步：使用Session对象创建一个Producer对象。<br>第七步：创建一个Message对象，创建一个TextMessage对象。<br>第八步：使用Producer对象发送消息。<br>第九步：关闭资源。   </p>
 <p>代码实现:</p>
 <pre><code>@Test
