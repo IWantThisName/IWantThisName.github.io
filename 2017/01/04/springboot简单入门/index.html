@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot1.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot2.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot3.png">
-<meta property="og:updated_time" content="2017-03-21T07:17:04.715Z">
+<meta property="og:updated_time" content="2017-03-21T07:43:21.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot简单入门">
 <meta name="twitter:description" content="Spring Boot是什么Spring框架自2003年兴起，其初衷是简化JavaEE的开发，发展到今天已经有十几年的历史了。熟悉Spring的开发者都知道，Spring能方便的集成其它的各种优秀框架。但是随着你集成的框架越多，项目的基础框架搭建就越来越麻烦，依赖管理越来越复杂，配置文件开始膨胀。曾经的轻量级框架Spring也变得越来越臃肿了。于是近几年来，如何简化Spring平台下面的web开发">
@@ -568,8 +568,9 @@ public class ProductService {
 <h3 id="Thymeleaf模板框架集成"><a href="#Thymeleaf模板框架集成" class="headerlink" title="Thymeleaf模板框架集成"></a>Thymeleaf模板框架集成</h3><p>现在只剩web层的代码了。SpringBoot官方不建议使用jsp，而是采用一些模板引擎比如freeMarker，thymeleaf。Thymeleaf是官方推崇的一个模板框架，本例就基于它来实现web页面。 </p>
 <ol>
 <li><p>在src/main/resources下面创建一个templates目录，创建两个html文件  </p>
-<p> a) product_form.html, 这个文件用于输入product信息</p>
-<pre><code>&lt;!DOCTYPE HTML&gt;
+<pre><code>a) product_form.html, 这个文件用于输入product信息
+
+&lt;!DOCTYPE HTML&gt;
 &lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
 &lt;head&gt;
     &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
