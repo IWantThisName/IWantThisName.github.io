@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot1.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot2.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot3.png">
-<meta property="og:updated_time" content="2017-03-21T07:56:17.134Z">
+<meta property="og:updated_time" content="2017-03-21T08:11:44.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot简单入门">
 <meta name="twitter:description" content="Spring Boot是什么Spring框架自2003年兴起，其初衷是简化JavaEE的开发，发展到今天已经有十几年的历史了。熟悉Spring的开发者都知道，Spring能方便的集成其它的各种优秀框架。但是随着你集成的框架越多，项目的基础框架搭建就越来越麻烦，依赖管理越来越复杂，配置文件开始膨胀。曾经的轻量级框架Spring也变得越来越臃肿了。于是近几年来，如何简化Spring平台下面的web开发">
@@ -584,12 +584,12 @@ public class ProductService {
     &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-th:action=”@{/add\_product}”表示这个表单对应一个add_product的请求，这个请求的路径一会儿会在controller里面配置。
-
-th:object=”${product}”表示表单的字段会封装到一个product对象里面去，这个对象一会儿也会在controller里面设置。  
-
-th:field=”*{name}”这个对应product对象里面的字段。  
-</code></pre><p> b)product_detail.html， 这个文件用于显示最终保存的product信息  </p>
+</code></pre><blockquote>
+<p>th:action=”@{/add_product}”表示这个表单对应一个add_product的请求，这个请求的路径一会儿会在controller里面配置。</p>
+<p>th:object=”${product}”表示表单的字段会封装到一个product对象里面去，这个对象一会儿也会在controller里面设置。  </p>
+<p>th:field=”*{name}”这个对应product对象里面的字段。  </p>
+</blockquote>
+<p> b)product_detail.html， 这个文件用于显示最终保存的product信息  </p>
 <pre><code>&lt;!DOCTYPE HTML&gt;
 &lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;
 &lt;head&gt;
@@ -602,7 +602,7 @@ th:field=”*{name}”这个对应product对象里面的字段。
 &lt;/html&gt;
 </code></pre></li>
 </ol>
-<pre><code>th:text=”${product.name}” 表示模板会接受到一个product对象，然后显示其name字段。至于这个product对象是如何传递到页面的，一会儿在controller里面可以看到。
+<pre><code>&gt;th:text=”${product.name}” 表示模板会接受到一个product对象，然后显示其name字段。至于这个product对象是如何传递到页面的，一会儿在controller里面可以看到。
 </code></pre><ol>
 <li><p>创建ProductController  </p>
 <pre><code>package cn.itheima.springboot.snippets.controller;
