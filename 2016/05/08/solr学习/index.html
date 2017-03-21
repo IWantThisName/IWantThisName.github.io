@@ -1,0 +1,1158 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习,solr，lucene," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="需求分析在一些大型门户网站、电子商务网站等都需要站内搜索功能，使用传统的数据库查询方式实现搜索无法满足一些高级的搜索需求，比如：搜索速度要快、搜索结果按相关度排序、搜索内容格式不固定等，这里就需要使用全文检索技术实现搜索功能。
+实现方法使用Lucene实现单独使用Lucene实现站内搜索需要开发的工作量较大，主要表现在：索引维护、索引性能优化、搜索性能优化等，因此不建议采用。
+使用solr实现基于">
+<meta property="og:type" content="article">
+<meta property="og:title" content="solr学习">
+<meta property="og:url" content="http://shayujie.win/2016/05/08/solr学习/index.html">
+<meta property="og:site_name" content="windwest">
+<meta property="og:description" content="需求分析在一些大型门户网站、电子商务网站等都需要站内搜索功能，使用传统的数据库查询方式实现搜索无法满足一些高级的搜索需求，比如：搜索速度要快、搜索结果按相关度排序、搜索内容格式不固定等，这里就需要使用全文检索技术实现搜索功能。
+实现方法使用Lucene实现单独使用Lucene实现站内搜索需要开发的工作量较大，主要表现在：索引维护、索引性能优化、搜索性能优化等，因此不建议采用。
+使用solr实现基于">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr100.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr101.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr102.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr103.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr104.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr105.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr106.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr107.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr108.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr109.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr110.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr111.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr112.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr113.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr114.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr115.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr121.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr130.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr122.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr123.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr117.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr124.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr118.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr119.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr120.png">
+<meta property="og:updated_time" content="2017-03-21T09:27:42.115Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="solr学习">
+<meta name="twitter:description" content="需求分析在一些大型门户网站、电子商务网站等都需要站内搜索功能，使用传统的数据库查询方式实现搜索无法满足一些高级的搜索需求，比如：搜索速度要快、搜索结果按相关度排序、搜索内容格式不固定等，这里就需要使用全文检索技术实现搜索功能。
+实现方法使用Lucene实现单独使用Lucene实现站内搜索需要开发的工作量较大，主要表现在：索引维护、索引性能优化、搜索性能优化等，因此不建议采用。
+使用solr实现基于">
+<meta name="twitter:image" content="http://oles6cv6e.bkt.clouddn.com/solr100.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shayujie.win/2016/05/08/solr学习/"/>
+
+
+
+
+
+  <title> solr学习 | windwest </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?43c1d4343254ae7e56121486f5c38b77";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">windwest</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shayujie.win/2016/05/08/solr学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="wangjian">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="windwest">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="windwest" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                solr学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-08T14:19:28+08:00">
+                2016-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/solr/" itemprop="url" rel="index">
+                    <span itemprop="name">solr</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/05/08/solr学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/08/solr学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2016/05/08/solr学习/" class="leancloud_visitors" data-flag-title="solr学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3><p>在一些大型门户网站、电子商务网站等都需要站内搜索功能，使用传统的数据库查询方式实现搜索无法满足一些高级的搜索需求，比如：搜索速度要快、搜索结果按相关度排序、搜索内容格式不固定等，这里就需要使用全文检索技术实现搜索功能。</p>
+<h4 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h4><h5 id="使用Lucene实现"><a href="#使用Lucene实现" class="headerlink" title="使用Lucene实现"></a>使用Lucene实现</h5><p>单独使用Lucene实现站内搜索需要开发的工作量较大，主要表现在：索引维护、索引性能优化、搜索性能优化等，因此不建议采用。</p>
+<h5 id="使用solr实现"><a href="#使用solr实现" class="headerlink" title="使用solr实现"></a>使用solr实现</h5><p>基于Solr实现站内搜索扩展性较好并且可以减少程序员的工作量，因为Solr提供了较为完备的搜索引擎解决方案，因此在门户、论坛等系统中常用此方案。</p>
+<h3 id="什么是solr"><a href="#什么是solr" class="headerlink" title="什么是solr"></a>什么是solr</h3><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。  </p>
+<p>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。  </p>
+<h4 id="Solr与Lucene的区别"><a href="#Solr与Lucene的区别" class="headerlink" title="Solr与Lucene的区别"></a>Solr与Lucene的区别</h4><p>Lucene是一个开放源代码的全文检索引擎工具包，它不是一个完整的全文检索引擎，Lucene提供了完整的查询引擎和索引引擎，目的是为软件开发人员提供一个简单易用的工具包，以方便的在目标系统中实现全文检索的功能，或者以Lucene为基础构建全文检索引擎。  </p>
+<p>Solr的目标是打造一款企业级的搜索引擎系统，它是一个搜索引擎服务，可以独立运行，通过Solr可以非常快速的构建企业的搜索引擎，通过Solr也可以高效的完成站内搜索功能。 </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr100.png" alt="图片.png"></p>
+<h3 id="solr的安装及配置"><a href="#solr的安装及配置" class="headerlink" title="solr的安装及配置"></a>solr的安装及配置</h3><p><a href="http://shayujie.win/2016/04/15/solr%E5%8D%95%E6%9C%BA%E7%89%88%E6%90%AD%E5%BB%BA/">solr单机版安装</a></p>
+<h4 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h4><p>solr 需要运行在一个Servlet容器中，Solr4.10.3要求jdk使用1.7以上，Solr默认提供Jetty（java写的Servlet容器），本教程使用Tocmat作为Servlet容器，环境如下：  </p>
+<p>Solr：Solr4.10.3<br>Jdk：jdk1.7.0_72<br>Tomcat：apache-tomcat-7.0.53  </p>
+<h4 id="Solr整合tomcat"><a href="#Solr整合tomcat" class="headerlink" title="Solr整合tomcat"></a>Solr整合tomcat</h4><h5 id="Solr-Home与SolrCore"><a href="#Solr-Home与SolrCore" class="headerlink" title="Solr Home与SolrCore"></a>Solr Home与SolrCore</h5><p>创建一个Solr home目录，SolrHome是Solr运行的主目录，目录中包括了运行Solr实例所有的配置文件和数据文件，Solr实例就是SolrCore，一个SolrHome可以包括多个SolrCore（Solr实例），每个SolrCore提供单独的搜索和索引服务。</p>
+<p>example\solr是一个solr home目录结构，如下： </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr101.png" alt="图片.png"></p>
+<p>上图中“collection1”是一个SolrCore（Solr实例）目录 ，目录内容如下所示：  </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr102.png" alt="图片.png"></p>
+<p>说明：<br>collection1：叫做一个Solr运行实例SolrCore，SolrCore名称不固定，一个solr运行实例对外单独提供索引和搜索接口。<br>solrHome中可以创建多个solr运行实例SolrCore。<br>一个solr的运行实例对应一个索引目录。<br>conf是SolrCore的配置文件目录 。<br>data目录存放索引文件需要创建</p>
+<h5 id="整合步骤"><a href="#整合步骤" class="headerlink" title="整合步骤"></a>整合步骤</h5><p>第一步：安装tomcat。D:\temp\apache-tomcat-7.0.53  </p>
+<p>第二步：把solr的war包复制到tomcat 的webapp目录下。  </p>
+<p>把\solr-4.10.3\dist\solr-4.10.3.war复制到D:\temp\apache-tomcat-7.0.53\webapps下。<br>改名为solr.war  </p>
+<p>第三步：solr.war解压。使用压缩工具解压或者启动tomcat自动解压。解压之后删除solr.war  </p>
+<p>第四步：把\solr-4.10.3\example\lib\ext目录下的所有的jar包添加到solr工程中  </p>
+<p>第五步：配置solrHome和solrCore。  </p>
+<p>1）创建一个solrhome（存放solr所有配置文件的一个文件夹）。\solr-4.10.3\example\solr目录就是一个标准的solrhome。  </p>
+<p>2）把\solr-4.10.3\example\solr文件夹复制到D:\temp\0108路径下，改名为solrhome，改名不是必须的，是为了便于理解。  </p>
+<p>3）在solrhome下有一个文件夹叫做collection1这就是一个solrcore。就是一个solr的实例。一个solrcore相当于mysql中一个数据库。Solrcore之间是相互隔离。  </p>
+<p>i.在solrcore中有一个文件夹叫做conf，包含了索引solr实例的配置信息。<br>ii.在conf文件夹下有一个solrconfig.xml。配置实例的相关信息。如果使用默认配置可以不用做任何修改。<br>Xml的配置信息：<br>Lib：solr服务依赖的扩展包，默认的路径是collection1\lib文件夹，如果没有就创建一个<br>dataDir：配置了索引库的存放路径。默认路径是collection1\data文件夹，如果没有data文件夹，会自动创建。<br>requestHandler：<br><img src="http://oles6cv6e.bkt.clouddn.com/solr103.png" alt="图片.png"></p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr104.png" alt="图片.png"></p>
+<p>第六步：告诉solr服务器配置文件也就是solrHome的位置。修改web.xml使用jndi的方式告诉solr服务器。<br>Solr/home名称必须是固定的。<br><img src="http://oles6cv6e.bkt.clouddn.com/solr105.png" alt="图片.png"></p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr106.png" alt="图片.png"><br>第七步：启动tomcat  </p>
+<p>第八步：访问<a href="http://localhost:8080/solr/" target="_blank" rel="external">http://localhost:8080/solr/</a>  </p>
+<h4 id="Solr后台管理"><a href="#Solr后台管理" class="headerlink" title="Solr后台管理"></a>Solr后台管理</h4><h5 id="管理界面"><a href="#管理界面" class="headerlink" title="管理界面"></a>管理界面</h5><p><img src="http://oles6cv6e.bkt.clouddn.com/solr107.png" alt="图片.png"></p>
+<h5 id="Dashboard"><a href="#Dashboard" class="headerlink" title="Dashboard"></a>Dashboard</h5><p>仪表盘，显示了该Solr实例开始启动运行的时间、版本、系统资源、jvm等信息。</p>
+<h5 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h5><p>Solr运行日志信息</p>
+<h5 id="Cloud"><a href="#Cloud" class="headerlink" title="Cloud"></a>Cloud</h5><p>Cloud即SolrCloud，即Solr云（集群），当使用Solr Cloud模式运行时会显示此菜单，如下图是Solr Cloud的管理界面：<br><img src="http://oles6cv6e.bkt.clouddn.com/solr108.png" alt="图片.png"></p>
+<h5 id="Core-Admin"><a href="#Core-Admin" class="headerlink" title="Core Admin"></a>Core Admin</h5><p>Solr Core的管理界面。Solr Core 是Solr的一个独立运行实例单位，它可以对外提供索引和搜索服务，一个Solr工程可以运行多个SolrCore（Solr实例），一个Core对应一个索引目录。</p>
+<p>添加solrcore：<br>第一步：复制collection1改名为collection2  </p>
+<p>第二步：修改core.properties。name=collection2  </p>
+<p>第三步：重启tomcat  </p>
+<h5 id="java-properties"><a href="#java-properties" class="headerlink" title="java properties"></a>java properties</h5><p>Solr在JVM 运行环境中的属性信息，包括类路径、文件编码、jvm内存设置等信息。　　</p>
+<h5 id="Tread-Dump"><a href="#Tread-Dump" class="headerlink" title="Tread Dump"></a>Tread Dump</h5><p>显示Solr Server中当前活跃线程信息，同时也可以跟踪线程运行栈信息。　
+　</p>
+<h5 id="Core-selector"><a href="#Core-selector" class="headerlink" title="Core selector"></a>Core selector</h5><p>选择一个SolrCore进行详细操作，如下：　　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr109.png" alt="图片.png"></p>
+<h5 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h5><p>通过此界面可以测试索引分析器和搜索分析器的执行情况。　　<br><img src="http://oles6cv6e.bkt.clouddn.com/solr110.png" alt="图片.png"></p>
+<h5 id="Dataimport"><a href="#Dataimport" class="headerlink" title="Dataimport"></a>Dataimport</h5><p>可以定义数据导入处理器，从关系数据库将数据导入 到Solr索引库中。　</p>
+<h5 id="Document"><a href="#Document" class="headerlink" title="Document"></a>Document</h5><p>通过此菜单可以创建索引、更新索引、删除索引等操作，界面如下：　<br><img src="http://oles6cv6e.bkt.clouddn.com/solr111.png" alt="图片.png">　</p>
+<p>/update表示更新索引，solr默认根据id（唯一约束）域来更新Document的内容，如果根据id值搜索不到id域则会执行添加操作，如果找到则更新。</p>
+<h5 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h5><p><img src="http://oles6cv6e.bkt.clouddn.com/solr112.png" alt="图片.png"></p>
+<p>通过/select执行搜索索引，必须指定“q”查询条件方可搜索。</p>
+<h4 id="配置中文分析器"><a href="#配置中文分析器" class="headerlink" title="配置中文分析器"></a>配置中文分析器</h4><h5 id="Schema-xml"><a href="#Schema-xml" class="headerlink" title="Schema.xml"></a>Schema.xml</h5><p>schema.xml，在SolrCore的conf目录下，它是Solr数据表配置文件，它定义了加入索引的数据的数据类型的。主要包括FieldTypes、Fields和其他的一些缺省设置。　　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr113.png" alt="图片.png"></p>
+<p>FieldType域类型定义　　</p>
+<p>下边“text_general”是Solr默认提供的FieldType，通过它说明FieldType定义的内容：　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr114.png" alt="图片.png">　</p>
+<p>FieldType子结点包括：name,class,positionIncrementGap等一些参数：　　</p>
+<p>name：是这个FieldType的名称　　</p>
+<p>class：是Solr提供的包solr.TextField，solr.TextField 允许用户通过分析器来定制索引和查询，分析器包括一个分词器（tokenizer）和多个过滤器（filter）  </p>
+<p>positionIncrementGap：可选属性，定义在同一个文档中此类型数据的空白间隔，避免短语匹配错误，此值相当于Lucene的短语查询设置slop值，根据经验设置为100。在FieldType定义的时候最重要的就是定义这个类型的数据在建立索引和进行查询的时候要使用的分析器analyzer,包括分词和过滤　　  </p>
+<p>索引分析器中：使用solr.StandardTokenizerFactory标准分词器，solr.StopFilterFactory停用词过滤器，solr.LowerCaseFilterFactory小写过滤器。　　  </p>
+<p>搜索分析器中：使用solr.StandardTokenizerFactory标准分词器，solr.StopFilterFactory停用词过滤器，这里还用到了solr.SynonymFilterFactory同义词过滤器。　　  </p>
+<p>Field定义　　  </p>
+<p>在fields结点内定义具体的Field，filed定义包括name,type（为之前定义过的各种　　FieldType）,indexed（是否被索引）,stored（是否被储存），multiValued（是否存储多个值）等属性。　　   </p>
+<p>如下：　　   </p>
+<pre><code>&lt;field name=&quot;name&quot; type=&quot;text_general&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;
+&lt;field name=&quot;features&quot; type=&quot;text_general&quot; indexed=&quot;true&quot; stored=&quot;true&quot; multiValued=&quot;true&quot;/&gt;
+</code></pre><p>multiValued：该Field如果要存储多个值时设置为true，solr允许一个Field存储多个值，比如存储一个用户的好友id（多个），商品的图片（多个，大图和小图），通过使用solr查询要看出返回给客户端是数组：　　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr115.png" alt="图片.png">　</p>
+<p>uniqueKey　　  </p>
+<p>Solr中默认定义唯一主键key为id域，如下：　　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr121.png" alt="图片.png">　</p>
+<p>Solr在删除、更新索引时使用id域进行判断，也可以自定义唯一主键。　　  </p>
+<p>注意在创建索引时必须指定唯一约束。　　  </p>
+<p>copyField复制域　　</p>
+<p>copyField复制域，可以将多个Field复制到一个Field中，以便进行统一的检索：　　</p>
+<p>比如，输入关键字搜索title标题内容content，　<br>　<br>定义title、content、text的域：　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr130.png" alt="图片.png">　<br><img src="http://oles6cv6e.bkt.clouddn.com/solr122.png" alt="图片.png">　<br><img src="http://oles6cv6e.bkt.clouddn.com/solr123.png" alt="图片.png">　</p>
+<p>根据关键字只搜索text域的内容就相当于搜索title和content，将title和content复制到text中，如下：　　<br><img src="http://oles6cv6e.bkt.clouddn.com/solr117.png" alt="图片.png">　</p>
+<p>dynamicField（动态字段）　　<br>动态字段就是不用指定具体的名称，只要定义字段名称的规则，例如定义一个 dynamicField，name 为*_i，定义它的type为text，那么在使用这个字段的时候，任何以_i结尾的字段都被认为是符合这个定义的，例如：name_i，gender_i，school_i等。　　  </p>
+<p>自定义Field名为：product_title_t，“product_title_t”和scheam.xml中的dynamicField规则匹配成功，如下：　　 </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr124.png" alt="图片.png">   </p>
+<p>“product_title_t”是以“_t”结尾。　  　</p>
+<p>创建索引：　　</p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr118.png" alt="图片.png"><br>　<br>搜索索引：　　  </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr119.png" alt="图片.png"></p>
+<p>#####　安装中文分词器　　<br>使用IKAnalyzer中文分析器。　　  </p>
+<p>第一步：把IKAnalyzer2012FF_u1.jar添加到solr/WEB-INF/lib目录下。　　  </p>
+<p>第二步：复制IKAnalyzer的配置文件和自定义词典和停用词词典到solr的classpath下。　  　</p>
+<p>第三步：在schema.xml中添加一个自定义的fieldType，使用中文分析器。　　 </p>
+<pre><code>&lt;!-- IKAnalyzer--&gt;
+&lt;fieldType name=&quot;text_ik&quot; class=&quot;solr.TextField&quot;&gt;
+  &lt;analyzer class=&quot;org.wltea.analyzer.lucene.IKAnalyzer&quot;/&gt;
+&lt;/fieldType&gt;
+</code></pre><p>第四步：定义field，指定field的type属性为text_ik　　  </p>
+<pre><code>&lt;!--IKAnalyzer Field--&gt;
+&lt;field name=&quot;title_ik&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;true&quot; /&gt;
+&lt;field name=&quot;content_ik&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;false&quot; multiValued=&quot;true&quot;/&gt;
+</code></pre><p>第五步：重启tomcat　　<br>测试：　　　 </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr120.png" alt="图片.png"></p>
+<h4 id="设置业务系统Field"><a href="#设置业务系统Field" class="headerlink" title="设置业务系统Field"></a>设置业务系统Field</h4><p>如果不使用Solr提供的Field可以针对具体的业务需要自定义一套Field，如下是商品信息Field：    </p>
+<pre><code>&lt;!--product--&gt;
+&lt;field name=&quot;product_name&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;
+&lt;field name=&quot;product_price&quot;  type=&quot;float&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;
+&lt;field name=&quot;product_description&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;false&quot; /&gt;
+&lt;field name=&quot;product_picture&quot; type=&quot;string&quot; indexed=&quot;false&quot; stored=&quot;true&quot; /&gt;
+&lt;field name=&quot;product_catalog_name&quot; type=&quot;string&quot; indexed=&quot;true&quot; stored=&quot;true&quot; /&gt;
+
+&lt;field name=&quot;product_keywords&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;false&quot; multiValued=&quot;true&quot;/&gt;
+&lt;copyField source=&quot;product_name&quot; dest=&quot;product_keywords&quot;/&gt;
+&lt;copyField source=&quot;product_description&quot; dest=&quot;product_keywords&quot;/&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+            <a href="/tags/solr，lucene/" rel="tag"># solr，lucene</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/07/solr单机版搭建/" rel="next" title="solr单机版搭建">
+                <i class="fa fa-chevron-left"></i> solr单机版搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/10/solr集群版搭建/" rel="prev" title="solr集群版搭建">
+                solr集群版搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/05/08/solr学习/"
+     data-title="solr学习"
+     data-content=""
+     data-url="http://shayujie.win/2016/05/08/solr学习/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/08/solr学习/"
+           data-title="solr学习" data-url="http://shayujie.win/2016/05/08/solr学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wangjian" />
+          <p class="site-author-name" itemprop="name">wangjian</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方法"><span class="nav-number">1.1.</span> <span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Lucene实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用Lucene实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用solr实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用solr实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是solr"><span class="nav-number">2.</span> <span class="nav-text">什么是solr</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr与Lucene的区别"><span class="nav-number">2.1.</span> <span class="nav-text">Solr与Lucene的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solr的安装及配置"><span class="nav-number">3.</span> <span class="nav-text">solr的安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行环境"><span class="nav-number">3.1.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr整合tomcat"><span class="nav-number">3.2.</span> <span class="nav-text">Solr整合tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solr-Home与SolrCore"><span class="nav-number">3.2.1.</span> <span class="nav-text">Solr Home与SolrCore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#整合步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">整合步骤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr后台管理"><span class="nav-number">3.3.</span> <span class="nav-text">Solr后台管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#管理界面"><span class="nav-number">3.3.1.</span> <span class="nav-text">管理界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dashboard"><span class="nav-number">3.3.2.</span> <span class="nav-text">Dashboard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Logging"><span class="nav-number">3.3.3.</span> <span class="nav-text">Logging</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cloud"><span class="nav-number">3.3.4.</span> <span class="nav-text">Cloud</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-Admin"><span class="nav-number">3.3.5.</span> <span class="nav-text">Core Admin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#java-properties"><span class="nav-number">3.3.6.</span> <span class="nav-text">java properties</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tread-Dump"><span class="nav-number">3.3.7.</span> <span class="nav-text">Tread Dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-selector"><span class="nav-number">3.3.8.</span> <span class="nav-text">Core selector</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Analysis"><span class="nav-number">3.3.9.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dataimport"><span class="nav-number">3.3.10.</span> <span class="nav-text">Dataimport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Document"><span class="nav-number">3.3.11.</span> <span class="nav-text">Document</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Query"><span class="nav-number">3.3.12.</span> <span class="nav-text">Query</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置中文分析器"><span class="nav-number">3.4.</span> <span class="nav-text">配置中文分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Schema-xml"><span class="nav-number">3.4.1.</span> <span class="nav-text">Schema.xml</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置业务系统Field"><span class="nav-number">3.5.</span> <span class="nav-text">设置业务系统Field</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wangjian</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"windwest"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("DUQBQb6oCssm8GXEbBxE3MdC-gzGzoHsz", "g3B552waeaEE4e2aIwLa449e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
