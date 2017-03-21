@@ -122,7 +122,10 @@
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr118.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr119.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr120.png">
-<meta property="og:updated_time" content="2017-03-21T09:27:42.115Z">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr881.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr882.png">
+<meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/solr883.png">
+<meta property="og:updated_time" content="2017-03-21T10:25:24.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="solr学习">
 <meta name="twitter:description" content="需求分析在一些大型门户网站、电子商务网站等都需要站内搜索功能，使用传统的数据库查询方式实现搜索无法满足一些高级的搜索需求，比如：搜索速度要快、搜索结果按相关度排序、搜索内容格式不固定等，这里就需要使用全文检索技术实现搜索功能。
@@ -560,6 +563,165 @@
 &lt;field name=&quot;product_keywords&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;false&quot; multiValued=&quot;true&quot;/&gt;
 &lt;copyField source=&quot;product_name&quot; dest=&quot;product_keywords&quot;/&gt;
 &lt;copyField source=&quot;product_description&quot; dest=&quot;product_keywords&quot;/&gt;
+</code></pre><h4 id="批量导入数据"><a href="#批量导入数据" class="headerlink" title="批量导入数据"></a>批量导入数据</h4><p>使用dataimport插件批量导入数据。  </p>
+<p>第一步：把dataimport插件依赖的jar包添加到solrcore（collection1\lib）中  </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr881.png" alt="图片.png"></p>
+<p>还需要mysql的数据库驱动。</p>
+<p>第二步：配置solrconfig.mxl文件，添加一个requestHandler。</p>
+<pre><code> &lt;requestHandler name=&quot;/dataimport&quot; 
+class=&quot;org.apache.solr.handler.dataimport.DataImportHandler&quot;&gt;
+    &lt;lst name=&quot;defaults&quot;&gt;
+      &lt;str name=&quot;config&quot;&gt;data-config.xml&lt;/str&gt;
+     &lt;/lst&gt;
+  &lt;/requestHandler&gt; 
+</code></pre><p>第三步：创建一个data-config.xml，保存到collection1\conf\目录下</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;  
+&lt;dataConfig&gt;   
+&lt;dataSource type=&quot;JdbcDataSource&quot;   
+          driver=&quot;com.mysql.jdbc.Driver&quot;   
+          url=&quot;jdbc:mysql://localhost:3306/lucene&quot;   
+          user=&quot;root&quot;   
+          password=&quot;root&quot;/&gt;   
+&lt;document&gt;   
+    &lt;entity name=&quot;product&quot; query=&quot;SELECT pid,name,catalog_name,price,description,picture FROM products &quot;&gt;
+         &lt;field column=&quot;pid&quot; name=&quot;id&quot;/&gt; 
+         &lt;field column=&quot;name&quot; name=&quot;product_name&quot;/&gt; 
+         &lt;field column=&quot;catalog_name&quot; name=&quot;product_catalog_name&quot;/&gt; 
+         &lt;field column=&quot;price&quot; name=&quot;product_price&quot;/&gt; 
+         &lt;field column=&quot;description&quot; name=&quot;product_description&quot;/&gt; 
+         &lt;field column=&quot;picture&quot; name=&quot;product_picture&quot;/&gt; 
+    &lt;/entity&gt;   
+&lt;/document&gt;   
+
+&lt;/dataConfig&gt;
+</code></pre><p>第四步：重启tomcat  </p>
+<p>第五步：点击“execute”按钮导入数据  </p>
+<p><img src="http://oles6cv6e.bkt.clouddn.com/solr882.png" alt="图片.png"></p>
+<p>到入数据前会先清空索引库，然后再导入。  </p>
+<h3 id="使用solrj操作solr索引库"><a href="#使用solrj操作solr索引库" class="headerlink" title="使用solrj操作solr索引库"></a>使用solrj操作solr索引库</h3><p>导入以下jar包<br><img src="http://oles6cv6e.bkt.clouddn.com/solr883.png" alt="图片.png"></p>
+<h4 id="添加文档"><a href="#添加文档" class="headerlink" title="添加文档"></a>添加文档</h4><pre><code>//向索引库中添加索引
+@Test
+public void addDocument() throws Exception {
+    //和solr服务器创建连接
+    //参数：solr服务器的地址
+    SolrServer solrServer = new HttpSolrServer(&quot;http://localhost:8080/solr&quot;);
+    //创建一个文档对象
+    SolrInputDocument document = new SolrInputDocument();
+    //向文档中添加域
+    //第一个参数：域的名称，域的名称必须是在schema.xml中定义的
+    //第二个参数：域的值
+    document.addField(&quot;id&quot;, &quot;c0001&quot;);
+    document.addField(&quot;title_ik&quot;, &quot;使用solrJ添加的文档&quot;);
+    document.addField(&quot;content_ik&quot;, &quot;文档的内容&quot;);
+    document.addField(&quot;product_name&quot;, &quot;商品名称&quot;);
+    //把document对象添加到索引库中
+    solrServer.add(document);
+    //提交修改
+    solrServer.commit();
+
+}
+</code></pre><h4 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h4><h5 id="根据id删除"><a href="#根据id删除" class="headerlink" title="根据id删除"></a>根据id删除</h5><pre><code>//删除文档，根据id删除
+@Test
+public void deleteDocumentByid() throws Exception {
+    //创建连接
+    SolrServer solrServer = new HttpSolrServer(&quot;http://localhost:8080/solr&quot;);
+    //根据id删除文档
+    solrServer.deleteById(&quot;c0001&quot;);
+    //提交修改
+    solrServer.commit();
+}
+</code></pre><h5 id="根据查询条件删除"><a href="#根据查询条件删除" class="headerlink" title="根据查询条件删除"></a>根据查询条件删除</h5><pre><code>//根据查询条件删除文档
+@Test
+public void deleteDocumentByQuery() throws Exception {
+    //创建连接
+    SolrServer solrServer = new HttpSolrServer(&quot;http://localhost:8080/solr&quot;);
+    //根据查询条件删除文档
+    solrServer.deleteByQuery(&quot;*:*&quot;);
+    //提交修改
+    solrServer.commit();
+}
+</code></pre><h4 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h4><p>在solrJ中修改没有对应的update方法，只有add方法，只需要添加一条新的文档，和被修改的文档id一致就，可以修改了。本质上就是先删除后添加。 </p>
+<h4 id="查询文档"><a href="#查询文档" class="headerlink" title="查询文档"></a>查询文档</h4><h5 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h5><pre><code>//查询索引
+@Test
+public void queryIndex() throws Exception {
+    //创建连接
+    SolrServer solrServer = new HttpSolrServer(&quot;http://localhost:8080/solr&quot;);
+    //创建一个query对象
+    SolrQuery query = new SolrQuery();
+    //设置查询条件
+    query.setQuery(&quot;*:*&quot;);
+    //执行查询
+    QueryResponse queryResponse = solrServer.query(query);
+    //取查询结果
+    SolrDocumentList solrDocumentList = queryResponse.getResults();
+    //共查询到商品数量
+    System.out.println(&quot;共查询到商品数量:&quot; + solrDocumentList.getNumFound());
+    //遍历查询的结果
+    for (SolrDocument solrDocument : solrDocumentList) {
+        System.out.println(solrDocument.get(&quot;id&quot;));
+        System.out.println(solrDocument.get(&quot;product_name&quot;));
+        System.out.println(solrDocument.get(&quot;product_price&quot;));
+        System.out.println(solrDocument.get(&quot;product_catalog_name&quot;));
+        System.out.println(solrDocument.get(&quot;product_picture&quot;));
+
+    }
+}  
+</code></pre><h5 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h5><p>其中包含查询、过滤、分页、排序、高亮显示等处理。</p>
+<pre><code>//复杂查询索引
+@Test
+public void queryIndex2() throws Exception {
+    //创建连接
+    SolrServer solrServer = new HttpSolrServer(&quot;http://localhost:8080/solr&quot;);
+    //创建一个query对象
+    SolrQuery query = new SolrQuery();
+    //设置查询条件
+    query.setQuery(&quot;钻石&quot;);
+    //过滤条件
+    query.setFilterQueries(&quot;product_catalog_name:幽默杂货&quot;);
+    //排序条件
+    query.setSort(&quot;product_price&quot;, ORDER.asc);
+    //分页处理
+    query.setStart(0);
+    query.setRows(10);
+    //结果中域的列表
+    query.setFields(&quot;id&quot;,&quot;product_name&quot;,&quot;product_price&quot;,&quot;product_catalog_name&quot;,&quot;product_picture&quot;);
+    //设置默认搜索域
+    query.set(&quot;df&quot;, &quot;product_keywords&quot;);
+    //高亮显示
+    query.setHighlight(true);
+    //高亮显示的域
+    query.addHighlightField(&quot;product_name&quot;);
+    //高亮显示的前缀
+    query.setHighlightSimplePre(&quot;&lt;em&gt;&quot;);
+    //高亮显示的后缀
+    query.setHighlightSimplePost(&quot;&lt;/em&gt;&quot;);
+    //执行查询
+    QueryResponse queryResponse = solrServer.query(query);
+    //取查询结果
+    SolrDocumentList solrDocumentList = queryResponse.getResults();
+    //共查询到商品数量
+    System.out.println(&quot;共查询到商品数量:&quot; + solrDocumentList.getNumFound());
+    //遍历查询的结果
+    for (SolrDocument solrDocument : solrDocumentList) {
+        System.out.println(solrDocument.get(&quot;id&quot;));
+        //取高亮显示
+        String productName = &quot;&quot;;
+        Map&lt;String, Map&lt;String, List&lt;String&gt;&gt;&gt; highlighting = queryResponse.getHighlighting();
+        List&lt;String&gt; list = highlighting.get(solrDocument.get(&quot;id&quot;)).get(&quot;product_name&quot;);
+        //判断是否有高亮内容
+        if (null != list) {
+            productName = list.get(0);
+        } else {
+            productName = (String) solrDocument.get(&quot;product_name&quot;);
+        }
+
+        System.out.println(productName);
+        System.out.println(solrDocument.get(&quot;product_price&quot;));
+        System.out.println(solrDocument.get(&quot;product_catalog_name&quot;));
+        System.out.println(solrDocument.get(&quot;product_picture&quot;));
+
+    }
+} 
 </code></pre>
       
     </div>
@@ -703,7 +865,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -756,7 +918,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方法"><span class="nav-number">1.1.</span> <span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Lucene实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用Lucene实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用solr实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用solr实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是solr"><span class="nav-number">2.</span> <span class="nav-text">什么是solr</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr与Lucene的区别"><span class="nav-number">2.1.</span> <span class="nav-text">Solr与Lucene的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solr的安装及配置"><span class="nav-number">3.</span> <span class="nav-text">solr的安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行环境"><span class="nav-number">3.1.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr整合tomcat"><span class="nav-number">3.2.</span> <span class="nav-text">Solr整合tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solr-Home与SolrCore"><span class="nav-number">3.2.1.</span> <span class="nav-text">Solr Home与SolrCore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#整合步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">整合步骤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr后台管理"><span class="nav-number">3.3.</span> <span class="nav-text">Solr后台管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#管理界面"><span class="nav-number">3.3.1.</span> <span class="nav-text">管理界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dashboard"><span class="nav-number">3.3.2.</span> <span class="nav-text">Dashboard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Logging"><span class="nav-number">3.3.3.</span> <span class="nav-text">Logging</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cloud"><span class="nav-number">3.3.4.</span> <span class="nav-text">Cloud</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-Admin"><span class="nav-number">3.3.5.</span> <span class="nav-text">Core Admin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#java-properties"><span class="nav-number">3.3.6.</span> <span class="nav-text">java properties</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tread-Dump"><span class="nav-number">3.3.7.</span> <span class="nav-text">Tread Dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-selector"><span class="nav-number">3.3.8.</span> <span class="nav-text">Core selector</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Analysis"><span class="nav-number">3.3.9.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dataimport"><span class="nav-number">3.3.10.</span> <span class="nav-text">Dataimport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Document"><span class="nav-number">3.3.11.</span> <span class="nav-text">Document</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Query"><span class="nav-number">3.3.12.</span> <span class="nav-text">Query</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置中文分析器"><span class="nav-number">3.4.</span> <span class="nav-text">配置中文分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Schema-xml"><span class="nav-number">3.4.1.</span> <span class="nav-text">Schema.xml</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置业务系统Field"><span class="nav-number">3.5.</span> <span class="nav-text">设置业务系统Field</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实现方法"><span class="nav-number">1.1.</span> <span class="nav-text">实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用Lucene实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">使用Lucene实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用solr实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用solr实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是solr"><span class="nav-number">2.</span> <span class="nav-text">什么是solr</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr与Lucene的区别"><span class="nav-number">2.1.</span> <span class="nav-text">Solr与Lucene的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#solr的安装及配置"><span class="nav-number">3.</span> <span class="nav-text">solr的安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行环境"><span class="nav-number">3.1.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr整合tomcat"><span class="nav-number">3.2.</span> <span class="nav-text">Solr整合tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Solr-Home与SolrCore"><span class="nav-number">3.2.1.</span> <span class="nav-text">Solr Home与SolrCore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#整合步骤"><span class="nav-number">3.2.2.</span> <span class="nav-text">整合步骤</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Solr后台管理"><span class="nav-number">3.3.</span> <span class="nav-text">Solr后台管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#管理界面"><span class="nav-number">3.3.1.</span> <span class="nav-text">管理界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dashboard"><span class="nav-number">3.3.2.</span> <span class="nav-text">Dashboard</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Logging"><span class="nav-number">3.3.3.</span> <span class="nav-text">Logging</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Cloud"><span class="nav-number">3.3.4.</span> <span class="nav-text">Cloud</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-Admin"><span class="nav-number">3.3.5.</span> <span class="nav-text">Core Admin</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#java-properties"><span class="nav-number">3.3.6.</span> <span class="nav-text">java properties</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Tread-Dump"><span class="nav-number">3.3.7.</span> <span class="nav-text">Tread Dump</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Core-selector"><span class="nav-number">3.3.8.</span> <span class="nav-text">Core selector</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Analysis"><span class="nav-number">3.3.9.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dataimport"><span class="nav-number">3.3.10.</span> <span class="nav-text">Dataimport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Document"><span class="nav-number">3.3.11.</span> <span class="nav-text">Document</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Query"><span class="nav-number">3.3.12.</span> <span class="nav-text">Query</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置中文分析器"><span class="nav-number">3.4.</span> <span class="nav-text">配置中文分析器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Schema-xml"><span class="nav-number">3.4.1.</span> <span class="nav-text">Schema.xml</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置业务系统Field"><span class="nav-number">3.5.</span> <span class="nav-text">设置业务系统Field</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#批量导入数据"><span class="nav-number">3.6.</span> <span class="nav-text">批量导入数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用solrj操作solr索引库"><span class="nav-number">4.</span> <span class="nav-text">使用solrj操作solr索引库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加文档"><span class="nav-number">4.1.</span> <span class="nav-text">添加文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文档"><span class="nav-number">4.2.</span> <span class="nav-text">删除文档</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#根据id删除"><span class="nav-number">4.2.1.</span> <span class="nav-text">根据id删除</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#根据查询条件删除"><span class="nav-number">4.2.2.</span> <span class="nav-text">根据查询条件删除</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新文档"><span class="nav-number">4.3.</span> <span class="nav-text">更新文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询文档"><span class="nav-number">4.4.</span> <span class="nav-text">查询文档</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#简单查询"><span class="nav-number">4.4.1.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复杂查询"><span class="nav-number">4.4.2.</span> <span class="nav-text">复杂查询</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
