@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot1.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot2.png">
 <meta property="og:image" content="http://oles6cv6e.bkt.clouddn.com/springboot3.png">
-<meta property="og:updated_time" content="2017-03-21T08:21:23.533Z">
+<meta property="og:updated_time" content="2017-04-07T09:12:45.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Springboot简单入门">
 <meta name="twitter:description" content="Spring Boot是什么Spring框架自2003年兴起，其初衷是简化JavaEE的开发，发展到今天已经有十几年的历史了。熟悉Spring的开发者都知道，Spring能方便的集成其它的各种优秀框架。但是随着你集成的框架越多，项目的基础框架搭建就越来越麻烦，依赖管理越来越复杂，配置文件开始膨胀。曾经的轻量级框架Spring也变得越来越臃肿了。于是近几年来，如何简化Spring平台下面的web开发">
@@ -451,7 +451,7 @@
     &lt;java.version&gt;1.8&lt;/java.version&gt;
 &lt;/properties&gt;
 
-&lt;groupId&gt;cn.itheima.springboot&lt;/groupId&gt;
+&lt;groupId&gt;cn.my.springboot&lt;/groupId&gt;
 &lt;artifactId&gt;snippets&lt;/artifactId&gt;
 &lt;version&gt;0.1.0&lt;/version&gt;
 
@@ -482,7 +482,7 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
 </ol>
 <ol>
 <li><p>创建一个实体类Product  </p>
-<pre><code>package cn.itheima.springboot.snippets.entity;
+<pre><code>package cn.my.springboot.snippets.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -535,23 +535,23 @@ public class Product {
 }
 </code></pre></li>
 <li><p>创建Dao  </p>
-<pre><code>package cn.itheima.springboot.snippets.dao;
+<pre><code>package cn.my.springboot.snippets.dao;
 import org.springframework.data.repository.CrudRepository;
-import cn.itheima.springboot.snippets.entity.Product;
+import cn.my.springboot.snippets.entity.Product;
 
 public interface ProductDao extends CrudRepository&lt;Product, Long&gt; {
 }
 </code></pre><p> 注意这个Dao里面没有任何代码，但是这已经够了，它已经能做增删改查了。  </p>
 </li>
 <li><p>按照web开发的三层结构，我们再来创建一个ProductService。我们这个例子很简单，就实现一个product对象的保存。</p>
-<pre><code>package cn.itheima.springboot.snippets.service;
+<pre><code>package cn.my.springboot.snippets.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itheima.springboot.snippets.dao.ProductDao;
-import cn.itheima.springboot.snippets.entity.Product;
+import cn.my.springboot.snippets.dao.ProductDao;
+import cn.my.springboot.snippets.entity.Product;
 
 @Transactional
 @Service
@@ -605,7 +605,7 @@ public class ProductService {
 </blockquote>
 </li>
 <li><p>创建ProductController  </p>
-<pre><code>package cn.itheima.springboot.snippets.controller;
+<pre><code>package cn.my.springboot.snippets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -614,8 +614,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import cn.itheima.springboot.snippets.entity.Product;
-import cn.itheima.springboot.snippets.service.ProductService;
+import cn.my.springboot.snippets.entity.Product;
+import cn.my.springboot.snippets.service.ProductService;
 
 @Controller
 public class ProductController {
@@ -643,7 +643,7 @@ public class ProductController {
 </li>
 </ol>
 <h3 id="运行测试"><a href="#运行测试" class="headerlink" title="运行测试"></a>运行测试</h3><p>要让程序运行，我们还需要最后一个类Application:  </p>
-<pre><code>package cn.itheima.springboot.snippets;
+<pre><code>package cn.my.springboot.snippets;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
